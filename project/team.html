@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Team - Alert X</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="navbar.css">
+    <link rel="stylesheet" href="team.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://unpkg.com/framer-motion/dist/framer-motion.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">
+            <span class="logo-text">Alert <span class="highlight">X</span></span>
+        </div>
+        <div class="nav-links">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="about.html" class="nav-link">About</a>
+            <a href="team.html" class="nav-link active">Team</a>
+            <a href="subscription.html" class="nav-link">Pricing</a>
+            <div class="auth-section">
+                <a href="login.html" class="login-btn">Login</a>
+                <a href="signup.html" class="signup-btn">Sign Up</a>
+                <div class="user-section" style="display: none;">
+                    <a href="dashboard.html" class="dashboard-btn">Dashboard</a>
+                    <div class="profile-dropdown">
+                        <button class="profile-btn">
+                            <img src="https://via.placeholder.com/32" alt="Profile" id="profileImage" class="profile-img">
+                            <span id="profileName">User</span>
+                        </button>
+                        <div class="dropdown-content">
+                            <a href="profile.html">Profile</a>
+                            <a href="settings.html">Settings</a>
+                            <a href="#" id="logoutBtn">Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <main>
+        <section class="team-hero">
+            <div class="team-hero-content">
+                <h1 class="text-reveal">Meet Our Team</h1>
+                <p class="text-reveal">The brilliant minds behind Alert X's revolutionary security technology</p>
+            </div>
+            <div class="team-hero-pattern"></div>
+        </section>
+
+        <section class="leadership">
+            <div class="section-header">
+                <h2 class="reveal">Leadership</h2>
+                <div class="underline"></div>
+            </div>
+            <div class="leadership-grid">
+                <div class="leader-card">
+                    <div class="card-front">
+                        <div class="profile-image">
+                            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="CEO">
+                        </div>
+                        <h3>Dr. Sarah Chen</h3>
+                        <p class="title">Chief Executive Officer</p>
+                    </div>
+                    <div class="card-back">
+                        <h3>Dr. Sarah Chen</h3>
+                        <p>Former AI researcher at MIT with over 15 years of experience in computer vision and machine learning.</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="leader-card">
+                    <div class="card-front">
+                        <div class="profile-image">
+                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="CTO">
+                        </div>
+                        <h3>Michael Rodriguez</h3>
+                        <p class="title">Chief Technology Officer</p>
+                    </div>
+                    <div class="card-back">
+                        <h3>Michael Rodriguez</h3>
+                        <p>Former security systems architect with experience at leading tech companies. Specializes in scalable cloud infrastructure.</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="leader-card">
+                    <div class="card-front">
+                        <div class="profile-image">
+                            <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="COO">
+                        </div>
+                        <h3>Amara Johnson</h3>
+                        <p class="title">Chief Operating Officer</p>
+                    </div>
+                    <div class="card-back">
+                        <h3>Amara Johnson</h3>
+                        <p>Former operations executive with 12 years of experience scaling startups from early stage to market leaders.</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="engineering">
+            <div class="section-header">
+                <h2 class="reveal">Engineering Team</h2>
+                <div class="underline"></div>
+            </div>
+            <div class="team-grid">
+                <div class="team-member fade-up">
+                    <div class="member-image">
+                        <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Engineering Lead">
+                    </div>
+                    <div class="member-info">
+                        <h3>David Park</h3>
+                        <p class="title">VP of Engineering</p>
+                        <p class="bio">Leads our engineering team with expertise in distributed systems and AI infrastructure.</p>
+                    </div>
+                </div>
+
+                <div class="team-member fade-up">
+                    <div class="member-image">
+                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="AI Researcher">
+                    </div>
+                    <div class="member-info">
+                        <h3>Elena Petrov</h3>
+                        <p class="title">Lead AI Researcher</p>
+                        <p class="bio">PhD in Computer Vision with focus on real-time object detection and tracking.</p>
+                    </div>
+                </div>
+
+                <div class="team-member fade-up">
+                    <div class="member-image">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Backend Developer">
+                    </div>
+                    <div class="member-info">
+                        <h3>James Wilson</h3>
+                        <p class="title">Senior Backend Developer</p>
+                        <p class="bio">Architect of our scalable cloud infrastructure and real-time data processing systems.</p>
+                    </div>
+                </div>
+
+                <div class="team-member fade-up">
+                    <div class="member-image">
+                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Frontend Developer">
+                    </div>
+                    <div class="member-info">
+                        <h3>Sophia Lee</h3>
+                        <p class="title">Lead Frontend Developer</p>
+                        <p class="bio">Creates intuitive user interfaces with focus on accessibility and performance.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="product-team">
+            <div class="section-header">
+                <h2 class="reveal">Product & Design</h2>
+                <div class="underline"></div>
+            </div>
+            <div class="team-grid">
+                <div class="team-member fade-up">
+                    <div class="member-image">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Product Manager">
+                    </div>
+                    <div class="member-info">
+                        <h3>Olivia Martinez</h3>
+                        <p class="title">Head of Product</p>
+                        <p class="bio">Shapes our product vision with deep understanding of security industry needs.</p>
+                    </div>
+                </div>
+
+                <div class="team-member fade-up">
+                    <div class="member-image">
+                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="UX Designer">
+                    </div>
+                    <div class="member-info">
+                        <h3>Thomas Wright</h3>
+                        <p class="title">Lead UX Designer</p>
+                        <p class="bio">Creates intuitive user experiences that make complex security tools accessible.</p>
+                    </div>
+                </div>
+
+                <div class="team-member fade-up">
+                    <div class="member-image">
+                        <img src="https://images.unsplash.com/photo-1607746882042-944635dfe10e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="UI Designer">
+                    </div>
+                    <div class="member-info">
+                        <h3>Priya Sharma</h3>
+                        <p class="title">UI Designer</p>
+                        <p class="bio">Crafts beautiful interfaces with attention to detail and brand consistency.</p>
+                    </div>
+                </div>
+
+                <div class="team-member fade-up">
+                    <div class="member-image">
+                        <img src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Product Analyst">
+                    </div>
+                    <div class="member-info">
+                        <h3>Daniel Kim</h3>
+                        <p class="title">Product Analyst</p>
+                        <p class="bio">Translates user data into actionable insights to guide product development.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="join-team">
+            <div class="join-content reveal">
+                <h2>Join Our Team</h2>
+                <p>We're always looking for talented individuals who are passionate about security and AI technology.</p>
+                <div class="benefits-grid">
+                    <div class="benefit">
+                        <i class="fas fa-laptop-code"></i>
+                        <h3>Cutting-Edge Tech</h3>
+                        <p>Work with the latest AI and security technologies</p>
+                    </div>
+                    <div class="benefit">
+                        <i class="fas fa-globe"></i>
+                        <h3>Remote-First</h3>
+                        <p>Work from anywhere in the world</p>
+                    </div>
+                    <div class="benefit">
+                        <i class="fas fa-chart-line"></i>
+                        <h3>Growth Opportunities</h3>
+                        <p>Continuous learning and career advancement</p>
+                    </div>
+                    <div class="benefit">
+                        <i class="fas fa-users"></i>
+                        <h3>Inclusive Culture</h3>
+                        <p>Diverse and supportive work environment</p>
+                    </div>
+                </div>
+                <a href="#" class="cta-button">View Open Positions</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>Email: info@alertx.com</p>
+                <p>Phone: (555) 123-4567</p>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Newsletter</h3>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Enter your email">
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Alert X. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script type="module" src="nav.js"></script>
+    <script src="team.js"></script>
+</body>
+</html>

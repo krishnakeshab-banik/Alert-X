@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports - Alert X</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="dashboard.css">
+    
+    <link rel="stylesheet" href="reports.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <!-- Chart.js for data visualization -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Leaflet for maps -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <!-- Leaflet.heat plugin for heatmaps -->
+    <script src="https://unpkg.com/leaflet.heat@0.2.0/dist/leaflet-heat.js"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <a href="index.html" class="logo-text">Alert <span class="highlight">X</span></a>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="video-finder.html">Video Finder</a>
+            <a href="live-finder.html">Live Finder</a>
+            <a href="reports.html" class="active">Reports</a>
+            <div class="profile-dropdown">
+                <button class="profile-btn">
+                    <img src="" alt="Profile" id="profileImage" class="profile-img">
+                    <span id="profileName">User</span>
+                </button>
+                <div class="dropdown-content">
+                    <a href="profile.html">Profile</a>
+                    <a href="settings.html">Settings</a>
+                    <a href="#" id="logoutBtn">Logout</a>
+                </div>
+            </div>
+        </div>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <main class="reports-container">
+        <div class="reports-header">
+            <div class="reports-title">
+                <h1>Reports Dashboard</h1>
+                <p>Comprehensive AI-generated insights from your video and live monitoring feeds</p>
+            </div>
+            <div class="reports-actions">
+                <div class="search-container">
+                    <input type="text" id="reportSearch" placeholder="Search reports...">
+                    <button class="search-btn"><i class="fas fa-search"></i></button>
+                </div>
+                <div class="view-toggle">
+                    <button class="view-btn active" data-view="grid"><i class="fas fa-th-large"></i></button>
+                    <button class="view-btn" data-view="list"><i class="fas fa-list"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="reports-overview">
+            <div class="overview-card total-reports">
+                <div class="overview-icon">
+                    <i class="fas fa-file-alt"></i>
+                </div>
+                <div class="overview-data">
+                    <h3>Total Reports</h3>
+                    <p class="overview-count">247</p>
+                    <span class="overview-trend positive">
+                        <i class="fas fa-arrow-up"></i> 12% from last month
+                    </span>
+                </div>
+            </div>
+            <div class="overview-card high-severity">
+                <div class="overview-icon">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <div class="overview-data">
+                    <h3>High Severity</h3>
+                    <p class="overview-count">18</p>
+                    <span class="overview-trend negative">
+                        <i class="fas fa-arrow-up"></i> 5% from last month
+                    </span>
+                </div>
+            </div>
+            <!-- Quality Analysis section removed -->
+            <div class="overview-card response-time">
+                <div class="overview-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <div class="overview-data">
+                    <h3>Avg. Response Time</h3>
+                    <p class="overview-count">1.8s</p>
+                    <span class="overview-trend positive">
+                        <i class="fas fa-arrow-down"></i> 0.3s from last month
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="reports-content">
+            <div class="reports-sidebar">
+                <div class="filter-section">
+                    <h3>Filters</h3>
+                    <div class="filter-group">
+                        <label>Date Range</label>
+                        <div class="date-range">
+                            <input type="date" id="dateFrom" class="date-input">
+                            <span>to</span>
+                            <input type="date" id="dateTo" class="date-input">
+                        </div>
+                    </div>
+                    <div class="filter-group">
+                        <label>Incident Type</label>
+                        <div class="checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" value="traffic" checked> Traffic
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" value="accident" checked> Accident
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" value="fire" checked> Fire
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" value="crowd" checked> Crowd Fight
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" value="surveillance" checked> Surveillance
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" value="person-detection" checked> Person Detection
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" value="vehicle-detection" checked> Vehicle Detection
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" value="license-plate" checked> License Plate
+                            </label>
+                        </div>
+                    </div>
+                    <div class="filter-group">
+                        <label>Severity Level</label>
+                        <div class="checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" value="low" checked> Low
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" value="medium" checked> Medium
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" value="high" checked> High
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <label>Source</label>
+                        <div class="checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" value="video-finder" checked> Video Finder
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" value="live-finder" checked> Live Finder
+                            </label>
+                        </div>
+                    </div>
+                    <div class="filter-group">
+                        <label>Location</label>
+                        <select id="locationFilter" class="filter-select">
+                            <option value="">All Locations</option>
+                            <option value="north">North Sector</option>
+                            <option value="south">South Sector</option>
+                            <option value="east">East Sector</option>
+                            <option value="west">West Sector</option>
+                            <option value="central">Central Area</option>
+                        </select>
+                    </div>
+                    <div class="filter-actions">
+                        <button id="applyFilters" class="btn-primary">Apply Filters</button>
+                        <button id="resetFilters" class="btn-outline">Reset</button>
+                    </div>
+                </div>
+
+                <!-- Weekly trend chart removed -->
+                <div class="analytics-section" style="display: none;">
+                    <h3>Quick Analytics</h3>
+                    <!-- All charts removed -->
+                </div>
+            </div>
+
+            <div class="reports-main">
+                <div class="reports-tabs">
+                    <button class="tab-btn active" data-tab="all">All Reports</button>
+                    <button class="tab-btn" data-tab="recent">Recent</button>
+                    <button class="tab-btn" data-tab="high-priority">High Priority</button>
+                    <button class="tab-btn" data-tab="live-finder">Live Finder</button>
+                    <button class="tab-btn" data-tab="saved">Saved</button>
+                    <button class="tab-btn" data-tab="analytics">Analytics</button>
+                </div>
+
+                <div class="tab-content active" id="all">
+                    <div class="reports-grid">
+                        <!-- Report Cards will be dynamically generated here -->
+                        <div class="report-card" data-id="1">
+                            <div class="report-header">
+                                <span class="report-type traffic">Traffic</span>
+                                <span class="report-severity medium">Medium</span>
+                            </div>
+                            <div class="report-body">
+                                <h3>Traffic Congestion Analysis</h3>
+                                <p class="report-location"><i class="fas fa-map-marker-alt"></i> North Sector, Highway 42</p>
+                                <p class="report-time"><i class="fas fa-clock"></i> May 15, 2023 - 08:45 AM</p>
+                                <p class="report-summary">Heavy traffic congestion detected with approximately 120 vehicles in a 500m stretch. Average speed: 12 km/h.</p>
+                                <div class="report-metrics">
+                                    <div class="metric">
+                                        <span class="metric-label">Confidence</span>
+                                        <span class="metric-value">96%</span>
+                                    </div>
+                                    <div class="metric">
+                                        <span class="metric-label">Vehicles</span>
+                                        <span class="metric-value">120</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="report-footer">
+                                <button class="btn-outline btn-sm view-report">View Details</button>
+                                <div class="report-actions">
+                                    <button class="action-btn" title="Download Report"><i class="fas fa-download"></i></button>
+                                    <button class="action-btn" title="Share Report"><i class="fas fa-share-alt"></i></button>
+                                    <button class="action-btn" title="Save Report"><i class="far fa-bookmark"></i></button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="report-card" data-id="2">
+                            <div class="report-header">
+                                <span class="report-type accident">Accident</span>
+                                <span class="report-severity high">High</span>
+                            </div>
+                            <div class="report-body">
+                                <h3>Vehicle Collision Detected</h3>
+                                <p class="report-location"><i class="fas fa-map-marker-alt"></i> East Sector, Junction 8</p>
+                                <p class="report-time"><i class="fas fa-clock"></i> May 14, 2023 - 17:23 PM</p>
+                                <p class="report-summary">Two-vehicle collision detected at intersection. Potential injuries. Emergency services notified.</p>
+                                <div class="report-metrics">
+                                    <div class="metric">
+                                        <span class="metric-label">Confidence</span>
+                                        <span class="metric-value">98%</span>
+                                    </div>
+                                    <div class="metric">
+                                        <span class="metric-label">Vehicles</span>
+                                        <span class="metric-value">2</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="report-footer">
+                                <button class="btn-outline btn-sm view-report">View Details</button>
+                                <div class="report-actions">
+                                    <button class="action-btn" title="Download Report"><i class="fas fa-download"></i></button>
+                                    <button class="action-btn" title="Share Report"><i class="fas fa-share-alt"></i></button>
+                                    <button class="action-btn" title="Save Report"><i class="far fa-bookmark"></i></button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="report-card" data-id="3">
+                            <div class="report-header">
+                                <span class="report-type fire">Fire</span>
+                                <span class="report-severity high">High</span>
+                            </div>
+                            <div class="report-body">
+                                <h3>Fire Outbreak Detection</h3>
+                                <p class="report-location"><i class="fas fa-map-marker-alt"></i> West Sector, Building 7</p>
+                                <p class="report-time"><i class="fas fa-clock"></i> May 13, 2023 - 22:17 PM</p>
+                                <p class="report-summary">Fire detected in commercial building. Estimated size: Medium. Smoke visible from multiple cameras.</p>
+                                <div class="report-metrics">
+                                    <div class="metric">
+                                        <span class="metric-label">Confidence</span>
+                                        <span class="metric-value">95%</span>
+                                    </div>
+                                    <div class="metric">
+                                        <span class="metric-label">Spread</span>
+                                        <span class="metric-value">Medium</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="report-footer">
+                                <button class="btn-outline btn-sm view-report">View Details</button>
+                                <div class="report-actions">
+                                    <button class="action-btn" title="Download Report"><i class="fas fa-download"></i></button>
+                                    <button class="action-btn" title="Share Report"><i class="fas fa-share-alt"></i></button>
+                                    <button class="action-btn" title="Save Report"><i class="far fa-bookmark"></i></button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="report-card" data-id="4">
+                            <div class="report-header">
+                                <span class="report-type crowd">Crowd Fight</span>
+                                <span class="report-severity medium">Medium</span>
+                            </div>
+                            <div class="report-body">
+                                <h3>Crowd Altercation Detected</h3>
+                                <p class="report-location"><i class="fas fa-map-marker-alt"></i> Central Area, Plaza</p>
+                                <p class="report-time"><i class="fas fa-clock"></i> May 12, 2023 - 23:05 PM</p>
+                                <p class="report-summary">Physical altercation detected between approximately 5-7 individuals. Security personnel alerted.</p>
+                                <div class="report-metrics">
+                                    <div class="metric">
+                                        <span class="metric-label">Confidence</span>
+                                        <span class="metric-value">89%</span>
+                                    </div>
+                                    <div class="metric">
+                                        <span class="metric-label">People</span>
+                                        <span class="metric-value">7</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="report-footer">
+                                <button class="btn-outline btn-sm view-report">View Details</button>
+                                <div class="report-actions">
+                                    <button class="action-btn" title="Download Report"><i class="fas fa-download"></i></button>
+                                    <button class="action-btn" title="Share Report"><i class="fas fa-share-alt"></i></button>
+                                    <button class="action-btn" title="Save Report"><i class="far fa-bookmark"></i></button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="report-card" data-id="5">
+                            <div class="report-header">
+                                <span class="report-type surveillance">Surveillance</span>
+                                <span class="report-severity low">Low</span>
+                            </div>
+                            <div class="report-body">
+                                <h3>Daily Surveillance Summary</h3>
+                                <p class="report-location"><i class="fas fa-map-marker-alt"></i> South Sector, Residential Area</p>
+                                <p class="report-time"><i class="fas fa-clock"></i> May 11, 2023 - 23:59 PM</p>
+                                <p class="report-summary">24-hour surveillance summary. 1,245 vehicles, 3,782 pedestrians detected. No significant incidents.</p>
+                                <div class="report-metrics">
+                                    <div class="metric">
+                                        <span class="metric-label">Vehicles</span>
+                                        <span class="metric-value">1,245</span>
+                                    </div>
+                                    <div class="metric">
+                                        <span class="metric-label">People</span>
+                                        <span class="metric-value">3,782</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="report-footer">
+                                <button class="btn-outline btn-sm view-report">View Details</button>
+                                <div class="report-actions">
+                                    <button class="action-btn" title="Download Report"><i class="fas fa-download"></i></button>
+                                    <button class="action-btn" title="Share Report"><i class="fas fa-share-alt"></i></button>
+                                    <button class="action-btn" title="Save Report"><i class="far fa-bookmark"></i></button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="report-card" data-id="6">
+                            <div class="report-header">
+                                <span class="report-type traffic">Traffic</span>
+                                <span class="report-severity low">Low</span>
+                            </div>
+                            <div class="report-body">
+                                <h3>Traffic Flow Analysis</h3>
+                                <p class="report-location"><i class="fas fa-map-marker-alt"></i> North Sector, Main Street</p>
+                                <p class="report-time"><i class="fas fa-clock"></i> May 10, 2023 - 17:30 PM</p>
+                                <p class="report-summary">Normal traffic flow with slight congestion during peak hours. Average speed: 35 km/h.</p>
+                                <div class="report-metrics">
+                                    <div class="metric">
+                                        <span class="metric-label">Confidence</span>
+                                        <span class="metric-value">97%</span>
+                                    </div>
+                                    <div class="metric">
+                                        <span class="metric-label">Vehicles</span>
+                                        <span class="metric-value">450</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="report-footer">
+                                <button class="btn-outline btn-sm view-report">View Details</button>
+                                <div class="report-actions">
+                                    <button class="action-btn" title="Download Report"><i class="fas fa-download"></i></button>
+                                    <button class="action-btn" title="Share Report"><i class="fas fa-share-alt"></i></button>
+                                    <button class="action-btn" title="Save Report"><i class="far fa-bookmark"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pagination">
+                        <button class="pagination-btn" disabled><i class="fas fa-chevron-left"></i></button>
+                        <button class="pagination-btn active">1</button>
+                        <button class="pagination-btn">2</button>
+                        <button class="pagination-btn">3</button>
+                        <span class="pagination-ellipsis">...</span>
+                        <button class="pagination-btn">12</button>
+                        <button class="pagination-btn"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="recent">
+                    <div class="reports-list">
+                        <!-- Recent reports will be displayed here -->
+                        <div class="list-report">
+                            <div class="list-report-icon accident">
+                                <i class="fas fa-car-crash"></i>
+                            </div>
+                            <div class="list-report-content">
+                                <div class="list-report-header">
+                                    <h3>Vehicle Collision Detected</h3>
+                                    <span class="report-severity high">High</span>
+                                </div>
+                                <p class="list-report-meta">
+                                    <span><i class="fas fa-map-marker-alt"></i> East Sector, Junction 8</span>
+                                    <span><i class="fas fa-clock"></i> May 14, 2023 - 17:23 PM</span>
+                                </p>
+                                <p class="list-report-summary">Two-vehicle collision detected at intersection. Potential injuries. Emergency services notified.</p>
+                            </div>
+                            <div class="list-report-actions">
+                                <button class="btn-outline btn-sm view-report">View</button>
+                                <div class="action-icons">
+                                    <button class="action-btn" title="Download Report"><i class="fas fa-download"></i></button>
+                                    <button class="action-btn" title="Share Report"><i class="fas fa-share-alt"></i></button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="list-report">
+                            <div class="list-report-icon fire">
+                                <i class="fas fa-fire"></i>
+                            </div>
+                            <div class="list-report-content">
+                                <div class="list-report-header">
+                                    <h3>Fire Outbreak Detection</h3>
+                                    <span class="report-severity high">High</span>
+                                </div>
+                                <p class="list-report-meta">
+                                    <span><i class="fas fa-map-marker-alt"></i> West Sector, Building 7</span>
+                                    <span><i class="fas fa-clock"></i> May 13, 2023 - 22:17 PM</span>
+                                </p>
+                                <p class="list-report-summary">Fire detected in commercial building. Estimated size: Medium. Smoke visible from multiple cameras.</p>
+                            </div>
+                            <div class="list-report-actions">
+                                <button class="btn-outline btn-sm view-report">View</button>
+                                <div class="action-icons">
+                                    <button class="action-btn" title="Download Report"><i class="fas fa-download"></i></button>
+                                    <button class="action-btn" title="Share Report"><i class="fas fa-share-alt"></i></button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="list-report">
+                            <div class="list-report-icon crowd">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="list-report-content">
+                                <div class="list-report-header">
+                                    <h3>Crowd Altercation Detected</h3>
+                                    <span class="report-severity medium">Medium</span>
+                                </div>
+                                <p class="list-report-meta">
+                                    <span><i class="fas fa-map-marker-alt"></i> Central Area, Plaza</span>
+                                    <span><i class="fas fa-clock"></i> May 12, 2023 - 23:05 PM</span>
+                                </p>
+                                <p class="list-report-summary">Physical altercation detected between approximately 5-7 individuals. Security personnel alerted.</p>
+                            </div>
+                            <div class="list-report-actions">
+                                <button class="btn-outline btn-sm view-report">View</button>
+                                <div class="action-icons">
+                                    <button class="action-btn" title="Download Report"><i class="fas fa-download"></i></button>
+                                    <button class="action-btn" title="Share Report"><i class="fas fa-share-alt"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="high-priority">
+                    <!-- High priority reports will be displayed here -->
+                    <div class="priority-alerts">
+                        <div class="alert-card">
+                            <div class="alert-header accident">
+                                <i class="fas fa-car-crash"></i>
+                                <h3>Vehicle Collision</h3>
+                                <span class="alert-time">2 days ago</span>
+                            </div>
+                            <div class="alert-body">
+                                <p>Two-vehicle collision detected at East Sector, Junction 8. Potential injuries reported.</p>
+                                <div class="alert-actions">
+                                    <button class="btn-primary btn-sm">View Details</button>
+                                    <button class="btn-outline btn-sm">Mark as Resolved</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="alert-card">
+                            <div class="alert-header fire">
+                                <i class="fas fa-fire"></i>
+                                <h3>Fire Outbreak</h3>
+                                <span class="alert-time">3 days ago</span>
+                            </div>
+                            <div class="alert-body">
+                                <p>Fire detected in commercial building at West Sector, Building 7. Medium-sized fire with visible smoke.</p>
+                                <div class="alert-actions">
+                                    <button class="btn-primary btn-sm">View Details</button>
+                                    <button class="btn-outline btn-sm">Mark as Resolved</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="saved">
+                    <!-- Saved reports will be displayed here -->
+                    <div class="saved-reports-empty">
+                        <div class="empty-state">
+                            <i class="far fa-bookmark"></i>
+                            <h3>No Saved Reports</h3>
+                            <p>You haven't saved any reports yet. Click the bookmark icon on any report to save it for quick access.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="analytics">
+                    <!-- Analytics dashboard will be displayed here -->
+                    <div class="analytics-dashboard" style="max-height: 800px; overflow-y: auto;">
+                        <div class="analytics-row">
+                            <div class="analytics-card full-width">
+                                <h3>Incident Trends Over Time</h3>
+                                <div class="chart-container">
+                                    <canvas id="incidentTrendsChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="analytics-row">
+                            <!-- Incident Distribution by Type chart removed -->
+                            <div class="analytics-card full-width">
+                                <h3>Severity Distribution</h3>
+                                <div class="chart-container">
+                                    <canvas id="severityChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="analytics-row">
+                            <div class="analytics-card full-width">
+                                <h3>Incident Heatmap</h3>
+                                <div class="map-container">
+                                    <div id="incidentMap"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Share Report Modal -->
+    <div class="modal" id="shareReportModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Share Report</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="share-options">
+                    <div class="share-option">
+                        <label for="shareEmail">Email</label>
+                        <div class="input-with-button">
+                            <input type="email" id="shareEmail" placeholder="Enter email address">
+                            <button class="btn-primary">Send</button>
+                        </div>
+                    </div>
+                    <div class="share-option">
+                        <label>Share Link</label>
+                        <div class="input-with-button">
+                            <input type="text" id="shareLink" value="https://alertx.com/reports/123456" readonly>
+                            <button class="btn-outline copy-link">Copy</button>
+                        </div>
+                    </div>
+                    <div class="share-option">
+                        <label>Share with Team</label>
+                        <div class="team-members">
+                            <div class="team-member">
+                                <img src="https://via.placeholder.com/40" alt="Team Member">
+                                <span>John Doe</span>
+                                <input type="checkbox">
+                            </div>
+                            <div class="team-member">
+                                <img src="https://via.placeholder.com/40" alt="Team Member">
+                                <span>Jane Smith</span>
+                                <input type="checkbox">
+                            </div>
+                            <div class="team-member">
+                                <img src="https://via.placeholder.com/40" alt="Team Member">
+                                <span>Mike Johnson</span>
+                                <input type="checkbox">
+                            </div>
+                        </div>
+                        <button class="btn-primary">Share with Selected</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Export Report Modal -->
+    <div class="modal" id="exportReportModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Export Report</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="export-options">
+                    <div class="export-option">
+                        <input type="radio" id="exportPDF" name="exportFormat" value="pdf" checked>
+                        <label for="exportPDF">
+                            <i class="fas fa-file-pdf"></i>
+                            <div>
+                                <h4>PDF Document</h4>
+                                <p>Complete report with all details and visualizations</p>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="export-option">
+                        <input type="radio" id="exportCSV" name="exportFormat" value="csv">
+                        <label for="exportCSV">
+                            <i class="fas fa-file-csv"></i>
+                            <div>
+                                <h4>CSV Spreadsheet</h4>
+                                <p>Raw data in spreadsheet format</p>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="export-option">
+                        <input type="radio" id="exportJSON" name="exportFormat" value="json">
+                        <label for="exportJSON">
+                            <i class="fas fa-file-code"></i>
+                            <div>
+                                <h4>JSON Data</h4>
+                                <p>Structured data for developers</p>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+                <div class="export-options-additional">
+                    <h4>Include in Export</h4>
+                    <div class="checkbox-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" checked> Report Summary
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" checked> Detailed Analysis
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" checked> Visual Data
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" checked> Video Snapshots
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" checked> AI Confidence Scores
+                        </label>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button class="btn-outline">Cancel</button>
+                    <button class="btn-primary">Export Report</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.38.4/dist/umd/supabase.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="reports.js"></script>
+</body>
+</html>

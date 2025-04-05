@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Alert X</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="themes.css">
+    <link rel="stylesheet" href="navbar.css">
+    <link rel="stylesheet" href="about.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://unpkg.com/framer-motion/dist/framer-motion.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">
+            <span class="logo-text">Alert <span class="highlight">X</span></span>
+        </div>
+        <div class="nav-links">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="about.html" class="nav-link active">About</a>
+            <a href="team.html" class="nav-link">Team</a>
+            <a href="subscription.html" class="nav-link">Pricing</a>
+            <div class="auth-section">
+                <a href="login.html" class="login-btn">Login</a>
+                <a href="signup.html" class="signup-btn">Sign Up</a>
+                <div class="user-section" style="display: none;">
+                    <a href="dashboard.html" class="dashboard-btn">Dashboard</a>
+                    <div class="profile-dropdown">
+                        <button class="profile-btn">
+                            <img src="https://via.placeholder.com/32" alt="Profile" id="profileImage" class="profile-img">
+                            <span id="profileName">User</span>
+                        </button>
+                        <div class="dropdown-content">
+                            <a href="profile.html">Profile</a>
+                            <a href="settings.html">Settings</a>
+                            <a href="#" id="logoutBtn">Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <main>
+        <section class="about-hero">
+            <div class="about-hero-content">
+                <h1 class="slide-in">Our Mission</h1>
+                <p class="fade-in">At Alert X, we're revolutionizing security through artificial intelligence. Our platform combines cutting-edge technology with intuitive design to create a safer world for everyone.</p>
+            </div>
+            <div class="about-hero-image fade-in-right">
+                <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="AI Security">
+            </div>
+        </section>
+
+        <section class="our-story">
+            <div class="section-header">
+                <h2 class="reveal">Our Story</h2>
+                <div class="underline"></div>
+            </div>
+            <div class="story-content">
+                <div class="story-image fade-in-left">
+                    <img src="https://images.unsplash.com/photo-1581092921461-39b9d08a9b21?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Company History">
+                </div>
+                <div class="story-text">
+                    <p class="reveal">Founded in 2020, Alert X began with a simple idea: security systems should be smarter, more responsive, and accessible to everyone. Our founders, a team of AI researchers and security experts, recognized that traditional surveillance systems were failing to keep pace with modern threats.</p>
+                    <p class="reveal">What started as a small research project has grown into a comprehensive security platform trusted by businesses, governments, and individuals worldwide. Our journey has been defined by innovation, perseverance, and a commitment to excellence.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="values">
+            <div class="section-header">
+                <h2 class="reveal">Our Core Values</h2>
+                <div class="underline"></div>
+            </div>
+            <div class="values-grid">
+                <div class="value-card pop-in">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Security First</h3>
+                    <p>We prioritize the security and privacy of our users above all else.</p>
+                </div>
+                <div class="value-card pop-in">
+                    <i class="fas fa-lightbulb"></i>
+                    <h3>Innovation</h3>
+                    <p>We constantly push the boundaries of what's possible with AI and security technology.</p>
+                </div>
+                <div class="value-card pop-in">
+                    <i class="fas fa-users"></i>
+                    <h3>Accessibility</h3>
+                    <p>We believe advanced security should be accessible to everyone, not just large organizations.</p>
+                </div>
+                <div class="value-card pop-in">
+                    <i class="fas fa-globe"></i>
+                    <h3>Global Impact</h3>
+                    <p>We're committed to creating a safer world through our technology and partnerships.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="technology">
+            <div class="section-header">
+                <h2 class="reveal">Our Technology</h2>
+                <div class="underline"></div>
+            </div>
+            <div class="tech-showcase">
+                <div class="tech-item fade-in">
+                    <div class="tech-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <div class="tech-content">
+                        <h3>Advanced AI</h3>
+                        <p>Our proprietary AI algorithms can detect and analyze complex patterns in real-time, providing unprecedented accuracy in threat detection.</p>
+                    </div>
+                </div>
+                <div class="tech-item fade-in">
+                    <div class="tech-icon">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <div class="tech-content">
+                        <h3>Cloud Infrastructure</h3>
+                        <p>Our cloud-based platform ensures reliability, scalability, and accessibility from anywhere in the world.</p>
+                    </div>
+                </div>
+                <div class="tech-item fade-in">
+                    <div class="tech-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <div class="tech-content">
+                        <h3>End-to-End Encryption</h3>
+                        <p>All data is protected with military-grade encryption, ensuring your security information remains private and secure.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="partners">
+            <div class="section-header">
+                <h2 class="reveal">Our Partners</h2>
+                <div class="underline"></div>
+            </div>
+            <div class="partners-slider">
+                <div class="partner fade-in">
+                    <img src="https://via.placeholder.com/150?text=Partner+1" alt="Partner 1">
+                </div>
+                <div class="partner fade-in">
+                    <img src="https://via.placeholder.com/150?text=Partner+2" alt="Partner 2">
+                </div>
+                <div class="partner fade-in">
+                    <img src="https://via.placeholder.com/150?text=Partner+3" alt="Partner 3">
+                </div>
+                <div class="partner fade-in">
+                    <img src="https://via.placeholder.com/150?text=Partner+4" alt="Partner 4">
+                </div>
+                <div class="partner fade-in">
+                    <img src="https://via.placeholder.com/150?text=Partner+5" alt="Partner 5">
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <div class="cta-content reveal">
+                <h2>Ready to Transform Your Security?</h2>
+                <p>Join thousands of satisfied customers who trust Alert X for their security needs.</p>
+                <a href="signup.html" class="cta-button">Get Started Today</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>Email: info@alertx.com</p>
+                <p>Phone: (555) 123-4567</p>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Newsletter</h3>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Enter your email">
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Alert X. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script type="module" src="nav.js"></script>
+    <script src="about.js"></script>
+</body>
+</html>

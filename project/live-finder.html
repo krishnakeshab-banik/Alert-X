@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Theme loader script - must be first to prevent flash of unstyled content -->
+    <script src="theme-loader.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Finder - Alert X</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="themes.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="live-finder.css">
+    <link rel="stylesheet" href="live-finder-enhanced.css">
+    <link rel="stylesheet" href="camera-selection.css">
+    <link rel="stylesheet" href="webcam-fix.css">
+    <link rel="stylesheet" href="live-status.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <!-- Framer Motion for animations -->
+    <script src="https://unpkg.com/framer-motion/dist/framer-motion.js"></script>
+    <!-- AOS (Animate On Scroll) Library -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo">
+            <a href="index.html" class="logo-text">Alert <span class="highlight">X</span></a>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="video-finder.html">Video Finder</a>
+            <a href="live-finder.html" class="active">Live Finder</a>
+            <a href="reports.html">Reports</a>
+            <div class="profile-dropdown">
+                <button class="profile-btn">
+                    <img src="" alt="Profile" id="profileImage" class="profile-img">
+                    <span id="profileName">User</span>
+                </button>
+                <div class="dropdown-content">
+                    <a href="profile.html">Profile</a>
+                    <a href="settings.html">Settings</a>
+                    <a href="#" id="logoutBtn">Logout</a>
+                </div>
+            </div>
+        </div>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+
+    <!-- Main Content -->
+    <main class="live-finder-container">
+        <div class="live-finder-header">
+            <h1 class="fade-in">Live Finder</h1>
+            <p class="fade-in">Real-time monitoring and detection from your CCTV cameras</p>
+        </div>
+
+        <!-- Control Panel -->
+        <div class="control-panel" data-aos="fade-up">
+            <div class="panel-section" data-aos="fade-right" data-aos-delay="100">
+                <h3>Camera Controls</h3>
+                <div class="camera-controls">
+                    <button id="add-camera-btn" class="btn-primary" data-aos="zoom-in" data-aos-delay="200" onclick="console.log('Add camera button clicked directly'); openCameraSelectionModal();"><i class="fas fa-plus"></i> Add Camera</button>
+                    <button id="layout-grid-btn" class="btn-outline active" data-aos="zoom-in" data-aos-delay="250"><i class="fas fa-th-large"></i> Grid</button>
+                    <button id="layout-single-btn" class="btn-outline" data-aos="zoom-in" data-aos-delay="300"><i class="fas fa-square"></i> Single</button>
+                    <div class="camera-controls-advanced" data-aos="fade-left" data-aos-delay="350">
+                        <div class="camera-count">
+                            <span id="active-cameras">0</span>/<span id="max-cameras">10</span> Cameras
+                        </div>
+                        <div class="camera-limit-control">
+                            <label for="camera-limit">Max Cameras:</label>
+                            <select id="camera-limit" onchange="updateCameraLimit(this.value)">
+                                <option value="4">4</option>
+                                <option value="6">6</option>
+                                <option value="8">8</option>
+                                <option value="10" selected>10</option>
+                                <option value="12">12</option>
+                                <option value="16">16</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel-section" data-aos="fade-right" data-aos-delay="150">
+                <h3>Detection Tools</h3>
+                <div class="detection-tools">
+                    <button id="person-search-btn" class="tool-btn" data-aos="fade-up" data-aos-delay="200">
+                        <i class="fas fa-user-alt"></i>
+                        <span>Person Search</span>
+                    </button>
+                    <button id="vehicle-search-btn" class="tool-btn" data-aos="fade-up" data-aos-delay="250">
+                        <i class="fas fa-car"></i>
+                        <span>Vehicle Search</span>
+                    </button>
+                    <button id="incident-detection-btn" class="tool-btn" data-aos="fade-up" data-aos-delay="300">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <span>Incident Detection</span>
+                    </button>
+                    <button id="traffic-analysis-btn" class="tool-btn" data-aos="fade-up" data-aos-delay="350">
+                        <i class="fas fa-traffic-light"></i>
+                        <span>Traffic Analysis</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="panel-section" data-aos="fade-right" data-aos-delay="200">
+                <h3>Live Status</h3>
+                <div class="status-indicators">
+                    <div class="status-item" data-aos="fade-left" data-aos-delay="250">
+                        <span class="status-label">System Status:</span>
+                        <span class="status-value online"><i class="fas fa-circle"></i> Online</span>
+                    </div>
+                    <div class="status-item" data-aos="fade-left" data-aos-delay="300">
+                        <span class="status-label">Active Detections:</span>
+                        <span class="status-value" id="active-detections">0</span>
+                    </div>
+                    <div class="status-item" data-aos="fade-left" data-aos-delay="350">
+                        <span class="status-label">Incidents Today:</span>
+                        <span class="status-value" id="incidents-today">0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Display Area -->
+        <div class="main-display" data-aos="fade-up" data-aos-delay="400">
+            <!-- Camera Grid -->
+            <div class="camera-grid" id="camera-grid" data-aos="zoom-in" data-aos-delay="500">
+                <div class="empty-state">
+                    <i class="fas fa-video-slash" data-aos="fade-in" data-aos-delay="600"></i>
+                    <h3 data-aos="fade-up" data-aos-delay="650">No Cameras Connected</h3>
+                    <p data-aos="fade-up" data-aos-delay="700">Click "Add Camera" to connect your CCTV feeds</p>
+                </div>
+            </div>
+
+            <!-- Detection Panel (Hidden by default) -->
+            <div class="detection-panel" id="detection-panel">
+                <div class="panel-header">
+                    <h3 id="detection-panel-title">Person Search</h3>
+                    <button class="close-panel-btn"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="panel-content">
+                    <!-- Person Search Panel -->
+                    <div class="search-panel" id="person-search-panel">
+                        <div class="upload-area">
+                            <div class="upload-preview" id="person-preview" data-aos="fade-in">
+                                <i class="fas fa-user"></i>
+                                <span>Upload Image</span>
+                            </div>
+                            <input type="file" id="person-upload" accept="image/*" hidden>
+                            <button class="btn-primary upload-btn" id="person-upload-btn" data-aos="fade-up" data-aos-delay="100">
+                                <i class="fas fa-upload"></i> Select Image
+                            </button>
+                        </div>
+                        <div class="search-options">
+                            <div class="form-group" data-aos="fade-up" data-aos-delay="150">
+                                <label>Search Precision</label>
+                                <select id="person-precision">
+                                    <option value="high">High (Slower)</option>
+                                    <option value="medium" selected>Medium</option>
+                                    <option value="low">Low (Faster)</option>
+                                </select>
+                            </div>
+                            <div class="form-group" data-aos="fade-up" data-aos-delay="200">
+                                <label>Camera Selection</label>
+                                <select id="person-camera-select">
+                                    <option value="all" selected>All Cameras</option>
+                                </select>
+                            </div>
+                            <button class="btn-primary search-btn" id="start-person-search" disabled data-aos="fade-up" data-aos-delay="250">
+                                <i class="fas fa-search"></i> Start Search
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Vehicle Search Panel -->
+                    <div class="search-panel" id="vehicle-search-panel">
+                        <div class="license-plate-input" data-aos="fade-in">
+                            <label>License Plate Number</label>
+                            <input type="text" id="license-plate" placeholder="Enter license plate number">
+                            <div class="suggestions" id="plate-suggestions"></div>
+                        </div>
+                        <div class="search-options">
+                            <div class="form-group" data-aos="fade-up" data-aos-delay="100">
+                                <label>Vehicle Type (Optional)</label>
+                                <select id="vehicle-type">
+                                    <option value="any" selected>Any Vehicle</option>
+                                    <option value="car">Car</option>
+                                    <option value="truck">Truck</option>
+                                    <option value="motorcycle">Motorcycle</option>
+                                    <option value="bus">Bus</option>
+                                </select>
+                            </div>
+                            <div class="form-group" data-aos="fade-up" data-aos-delay="150">
+                                <label>Camera Selection</label>
+                                <select id="vehicle-camera-select">
+                                    <option value="all" selected>All Cameras</option>
+                                </select>
+                            </div>
+                            <button class="btn-primary search-btn" id="start-vehicle-search" disabled data-aos="fade-up" data-aos-delay="200">
+                                <i class="fas fa-search"></i> Start Search
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Incident Detection Panel -->
+                    <div class="search-panel" id="incident-detection-panel">
+                        <div class="incident-types" data-aos="fade-in">
+                            <h4>Select Incident Types to Monitor</h4>
+                            <div class="checkbox-group">
+                                <label class="checkbox-container" data-aos="fade-right" data-aos-delay="50">
+                                    <input type="checkbox" value="accident" checked>
+                                    <span class="checkbox-label">Accidents</span>
+                                </label>
+                                <label class="checkbox-container" data-aos="fade-right" data-aos-delay="100">
+                                    <input type="checkbox" value="fire" checked>
+                                    <span class="checkbox-label">Fires</span>
+                                </label>
+                                <label class="checkbox-container" data-aos="fade-right" data-aos-delay="150">
+                                    <input type="checkbox" value="violence" checked>
+                                    <span class="checkbox-label">Violence/Fights</span>
+                                </label>
+                                <label class="checkbox-container" data-aos="fade-right" data-aos-delay="200">
+                                    <input type="checkbox" value="collapse" checked>
+                                    <span class="checkbox-label">Building Collapse</span>
+                                </label>
+                                <label class="checkbox-container" data-aos="fade-right" data-aos-delay="250">
+                                    <input type="checkbox" value="crowd" checked>
+                                    <span class="checkbox-label">Crowd Gathering</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="search-options">
+                            <div class="form-group" data-aos="fade-up" data-aos-delay="100">
+                                <label>Alert Method</label>
+                                <select id="alert-method">
+                                    <option value="visual" selected>Visual Only</option>
+                                    <option value="sound">Sound + Visual</option>
+                                    <option value="email">Email + Visual</option>
+                                    <option value="all">All Methods</option>
+                                </select>
+                            </div>
+                            <div class="form-group" data-aos="fade-up" data-aos-delay="150">
+                                <label>Camera Selection</label>
+                                <select id="incident-camera-select">
+                                    <option value="all" selected>All Cameras</option>
+                                </select>
+                            </div>
+                            <button class="btn-primary search-btn" id="start-incident-detection" data-aos="fade-up" data-aos-delay="200">
+                                <i class="fas fa-exclamation-triangle"></i> Start Monitoring
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Traffic Analysis Panel -->
+                    <div class="search-panel" id="traffic-analysis-panel">
+                        <div class="traffic-options" data-aos="fade-in">
+                            <h4>Traffic Analysis Settings</h4>
+                            <div class="form-group" data-aos="fade-up" data-aos-delay="50">
+                                <label>Update Frequency</label>
+                                <select id="traffic-frequency">
+                                    <option value="5">Every 5 seconds</option>
+                                    <option value="15">Every 15 seconds</option>
+                                    <option value="30" selected>Every 30 seconds</option>
+                                    <option value="60">Every 1 minute</option>
+                                    <option value="300">Every 5 minutes</option>
+                                </select>
+                            </div>
+                            <div class="form-group" data-aos="fade-up" data-aos-delay="100">
+                                <label>Traffic Categories</label>
+                                <div class="traffic-categories">
+                                    <div class="traffic-category" data-aos="fade-right" data-aos-delay="150">
+                                        <span class="category-color low"></span>
+                                        <span class="category-label">Low:</span>
+                                        <span class="category-value">0-10 vehicles</span>
+                                    </div>
+                                    <div class="traffic-category" data-aos="fade-right" data-aos-delay="200">
+                                        <span class="category-color medium"></span>
+                                        <span class="category-label">Medium:</span>
+                                        <span class="category-value">11-30 vehicles</span>
+                                    </div>
+                                    <div class="traffic-category" data-aos="fade-right" data-aos-delay="250">
+                                        <span class="category-color high"></span>
+                                        <span class="category-label">High:</span>
+                                        <span class="category-value">31+ vehicles</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="search-options">
+                            <div class="form-group" data-aos="fade-up" data-aos-delay="150">
+                                <label>Display Mode</label>
+                                <select id="traffic-display">
+                                    <option value="overlay" selected>Camera Overlay</option>
+                                    <option value="heatmap">Traffic Heatmap</option>
+                                    <option value="both">Both</option>
+                                </select>
+                            </div>
+                            <div class="form-group" data-aos="fade-up" data-aos-delay="200">
+                                <label>Camera Selection</label>
+                                <select id="traffic-camera-select">
+                                    <option value="all" selected>All Cameras</option>
+                                </select>
+                            </div>
+                            <button class="btn-primary search-btn" id="start-traffic-analysis" data-aos="fade-up" data-aos-delay="250">
+                                <i class="fas fa-chart-line"></i> Start Analysis
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Panel -->
+        <div class="results-panel" id="results-panel">
+            <div class="panel-header">
+                <h3>Detection Results</h3>
+                <div class="panel-controls">
+                    <button id="export-results-btn" class="btn-sm btn-outline">
+                        <i class="fas fa-download"></i> Export
+                    </button>
+                    <button class="minimize-panel-btn">
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="panel-content">
+                <div class="results-tabs">
+                    <button class="tab-btn active" data-tab="all">All</button>
+                    <button class="tab-btn" data-tab="person">Persons</button>
+                    <button class="tab-btn" data-tab="vehicle">Vehicles</button>
+                    <button class="tab-btn" data-tab="incident">Incidents</button>
+                    <button class="tab-btn" data-tab="traffic">Traffic</button>
+                </div>
+                <div class="results-list" id="results-list">
+                    <div class="empty-results">
+                        <i class="fas fa-search"></i>
+                        <p>No detection results yet</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modals -->
+    <!-- Camera Selection Modal -->
+    <div class="camera-selection-modal" id="camera-selection-modal">
+        <div class="camera-selection-container">
+            <div class="camera-selection-header">
+                <h2><i class="fas fa-video"></i> Select Camera Source</h2>
+                <button class="camera-selection-close" id="camera-selection-close">&times;</button>
+            </div>
+            <div class="camera-selection-body">
+                <div class="camera-options">
+                    <div class="camera-option" id="laptop-camera-option" onclick="console.log('Laptop camera clicked directly'); selectLaptopCamera();">
+                        <div class="camera-option-icon">
+                            <i class="fas fa-laptop"></i>
+                        </div>
+                        <div class="camera-option-title">Add Laptop Camera 💻</div>
+                        <div class="camera-option-desc">Use your laptop's built-in webcam</div>
+                    </div>
+                    <div class="camera-option" id="other-camera-option" onclick="console.log('Other camera clicked directly'); selectOtherCamera();">
+                        <div class="camera-option-icon">
+                            <i class="fas fa-video"></i>
+                        </div>
+                        <div class="camera-option-title">Add Other Camera 📡</div>
+                        <div class="camera-option-desc">Connect to external CCTV or IP cameras</div>
+                    </div>
+                </div>
+
+                <!-- Webcam Preview Section -->
+                <div class="webcam-preview-section" id="webcam-preview-section">
+                    <div class="webcam-container">
+                        <video id="webcam-video" class="webcam-video" autoplay playsinline></video>
+                    </div>
+                    <div class="webcam-info">
+                        <h3 id="webcam-name">Webcam</h3>
+                        <p>Preview your webcam before adding it to the grid</p>
+                    </div>
+                    <div class="webcam-controls">
+                        <div class="webcam-status">
+                            <i class="fas fa-circle"></i> Webcam active
+                        </div>
+                        <div class="webcam-buttons">
+                            <button class="webcam-btn cancel" id="webcam-cancel-btn">
+                                <i class="fas fa-times"></i> Cancel
+                            </button>
+                            <button class="webcam-btn change" id="webcam-change-btn">
+                                <i class="fas fa-exchange-alt"></i> Change
+                            </button>
+                            <button class="webcam-btn add" id="webcam-add-btn">
+                                <i class="fas fa-plus"></i> Add to Grid
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Webcam Selection Section -->
+                <div class="webcam-selection-section" id="webcam-selection-section">
+                    <div class="webcam-selection-header">
+                        <h3><i class="fas fa-camera"></i> Select a Webcam</h3>
+                        <p>Multiple webcams detected. Please select one to use:</p>
+                    </div>
+                    <div class="webcam-list" id="webcam-list">
+                        <!-- Webcam options will be added here dynamically -->
+                    </div>
+                </div>
+
+                <!-- No Camera Access Message -->
+                <div class="no-camera-access" id="no-camera-access">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <h3>Camera Access Denied</h3>
+                    <p>Please allow access to your camera in your browser settings to use this feature.</p>
+                    <button class="btn-primary" id="retry-camera-btn">
+                        <i class="fas fa-redo"></i> Try Again
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Camera Modal -->
+    <div class="modal" id="add-camera-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Add External Camera</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="camera-name">Camera Name</label>
+                    <input type="text" id="camera-name" placeholder="e.g., Front Entrance">
+                </div>
+                <div class="form-group">
+                    <label for="camera-location">Location</label>
+                    <input type="text" id="camera-location" placeholder="e.g., Main Building">
+                </div>
+                <div class="form-group">
+                    <label for="camera-url">RTSP URL or Stream Source</label>
+                    <input type="text" id="camera-url" placeholder="rtsp://username:password@ip:port/stream">
+                    <small>For testing, you can use our demo streams</small>
+                </div>
+                <div class="demo-streams">
+                    <h4>Demo Streams</h4>
+                    <div class="demo-stream-list">
+                        <button class="demo-stream" data-url="demo-stream-1">Street Corner</button>
+                        <button class="demo-stream" data-url="demo-stream-2">Parking Lot</button>
+                        <button class="demo-stream" data-url="demo-stream-3">Building Entrance</button>
+                        <button class="demo-stream" data-url="demo-stream-4">Highway</button>
+                        <button class="demo-stream" data-url="demo-stream-5">Shopping Mall</button>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button class="btn-outline" id="test-connection-btn">Test Connection</button>
+                    <button class="btn-primary" id="save-camera-btn">Add Camera</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Detection Alert Modal -->
+    <div class="modal" id="detection-alert-modal">
+        <div class="modal-content">
+            <div class="modal-header alert">
+                <h2><i class="fas fa-exclamation-triangle"></i> <span id="alert-title">Incident Detected</span></h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="alert-details">
+                    <div class="alert-image">
+                        <img id="alert-image" src="" alt="Detection">
+                    </div>
+                    <div class="alert-info">
+                        <div class="info-item">
+                            <span class="info-label">Type:</span>
+                            <span class="info-value" id="alert-type">Fire</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Camera:</span>
+                            <span class="info-value" id="alert-camera">Front Entrance</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Location:</span>
+                            <span class="info-value" id="alert-location">Main Building</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Time:</span>
+                            <span class="info-value" id="alert-time">12:34 PM</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Confidence:</span>
+                            <span class="info-value" id="alert-confidence">98%</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="alert-actions">
+                    <button class="btn-outline" id="dismiss-alert-btn">Dismiss</button>
+                    <button class="btn-primary" id="view-camera-btn">View Camera</button>
+                    <button class="btn-danger" id="report-alert-btn">Report Emergency</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Traffic Heatmap Modal -->
+    <div class="modal" id="traffic-heatmap-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Traffic Heatmap</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="heatmap-container">
+                    <div class="heatmap-controls">
+                        <div class="time-selector">
+                            <button class="time-btn active" data-time="now">Current</button>
+                            <button class="time-btn" data-time="hour">Past Hour</button>
+                            <button class="time-btn" data-time="day">Today</button>
+                        </div>
+                        <div class="view-selector">
+                            <button class="view-btn active" data-view="heatmap">Heatmap</button>
+                            <button class="view-btn" data-view="chart">Chart</button>
+                        </div>
+                    </div>
+                    <div class="heatmap-view">
+                        <div id="traffic-heatmap"></div>
+                    </div>
+                    <div class="chart-view" style="display: none;">
+                        <canvas id="traffic-chart"></canvas>
+                    </div>
+                    <div class="heatmap-legend">
+                        <div class="legend-item">
+                            <span class="legend-color low"></span>
+                            <span class="legend-label">Low Traffic</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-color medium"></span>
+                            <span class="legend-label">Medium Traffic</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-color high"></span>
+                            <span class="legend-label">High Traffic</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Alert -->
+    <div class="floating-alert" id="floating-alert">
+        <div class="alert-icon">
+            <i class="fas fa-exclamation-circle"></i>
+        </div>
+        <div class="alert-content">
+            <h4 id="floating-alert-title">Incident Detected</h4>
+            <p id="floating-alert-message">Fire detected on Camera 1</p>
+        </div>
+        <button class="alert-close">&times;</button>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/heatmap.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/framer-motion@10.16.4/dist/framer-motion.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="global.js"></script>
+    <script src="framer-motion-integration.js"></script>
+    <script src="live-finder.js"></script>
+    <script src="camera-selection.js"></script>
+    <script src="webcam-monitor.js"></script>
+
+    <!-- Initialize AOS -->
+    <script>
+        // Initialize Animate on Scroll
+        AOS.init({
+            duration: 800,
+            easing: 'ease-out',
+            once: true
+        });
+
+        // Add animation classes to elements
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add fade-in class to camera cells
+            const cameraCells = document.querySelectorAll('.camera-cell');
+            cameraCells.forEach((cell, index) => {
+                cell.setAttribute('data-aos', 'fade-up');
+                cell.setAttribute('data-aos-delay', (100 * index).toString());
+            });
+
+            // Add animation to control panel sections
+            const panelSections = document.querySelectorAll('.panel-section');
+            panelSections.forEach((section, index) => {
+                section.setAttribute('data-aos', 'fade-right');
+                section.setAttribute('data-aos-delay', (100 * index).toString());
+            });
+
+            // Test function to check if camera selection modal is working
+            window.testCameraModal = function() {
+                console.log('Testing camera modal...');
+                const modal = document.getElementById('camera-selection-modal');
+                if (modal) {
+                    console.log('Camera modal found, showing it');
+                    modal.classList.add('active');
+                } else {
+                    console.error('Camera modal not found!');
+                }
+            };
+
+            // Add a test button for debugging
+            const testButton = document.createElement('button');
+            testButton.textContent = 'Test Camera Modal';
+            testButton.style.position = 'fixed';
+            testButton.style.bottom = '10px';
+            testButton.style.right = '10px';
+            testButton.style.zIndex = '9999';
+            testButton.style.padding = '10px';
+            testButton.style.background = 'red';
+            testButton.style.color = 'white';
+            testButton.style.border = 'none';
+            testButton.style.borderRadius = '5px';
+            testButton.style.cursor = 'pointer';
+            testButton.onclick = window.testCameraModal;
+            document.body.appendChild(testButton);
+        });
+    </script>
+</body>
+</html>

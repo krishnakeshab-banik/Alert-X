@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Alert X</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="themes.css">
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="dashboard-particles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <a href="index.html" class="logo-text">Alert <span class="highlight">X</span></a>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="video-finder.html">Video Finder</a>
+            <a href="live-finder.html">Live Finder</a>
+            <a href="reports.html">Reports</a>
+            <div class="profile-dropdown">
+                <button class="profile-btn">
+                    <img src="" alt="Profile" id="profileImage" class="profile-img">
+                    <span id="profileName">User</span>
+                </button>
+                <div class="dropdown-content">
+                    <a href="profile.html">Profile</a>
+                    <a href="settings.html">Settings</a>
+                    <a href="#" id="logoutBtn">Logout</a>
+                </div>
+            </div>
+        </div>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <main class="dashboard-container">
+        <h1>Welcome to Alert X Dashboard</h1>
+        <div class="dashboard-grid">
+            <div class="dashboard-card">
+                <i class="fas fa-video"></i>
+                <h3>Video Finder</h3>
+                <p>Analyze video footage for person and vehicle detection</p>
+                <a href="video-finder.html" class="dashboard-link">Open Video Finder</a>
+            </div>
+            <div class="dashboard-card">
+                <i class="fas fa-camera"></i>
+                <h3>Live Finder</h3>
+                <p>Real-time surveillance with instant alerts</p>
+                <a href="live-finder.html" class="dashboard-link">Open Live Finder</a>
+            </div>
+            <div class="dashboard-card">
+                <i class="fas fa-chart-bar"></i>
+                <h3>Reports</h3>
+                <p>View detailed analytics and insights</p>
+                <a href="reports.html" class="dashboard-link">View Reports</a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Particles.js library -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+    <script type="module" src="dashboard.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="dashboard-particles.js"></script>
+</body>
+</html>

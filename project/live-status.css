@@ -1,0 +1,129 @@
+/* Live Status Indicators CSS */
+
+/* Container for live status indicators */
+.live-status-indicator {
+    display: flex;
+    align-items: center;
+    padding: 8px 12px;
+    margin: 8px 0;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 6px;
+    border-left: 3px solid var(--primary-color);
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Pulsing indicator dot */
+.live-status-indicator i.pulse {
+    color: #10b981;
+    margin-right: 10px;
+    animation: pulse 2s infinite;
+}
+
+/* Status text */
+.live-status-indicator span {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+/* Active button state */
+.search-btn.active {
+    background-color: #ef4444 !important;
+    border-color: #ef4444 !important;
+}
+
+.search-btn.active:hover {
+    background-color: #dc2626 !important;
+}
+
+/* Animations */
+@keyframes pulse {
+    0% {
+        opacity: 0.5;
+        transform: scale(0.95);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+    100% {
+        opacity: 0.5;
+        transform: scale(0.95);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Status indicators for different types */
+#status-incident-detection {
+    border-left-color: #ef4444;
+}
+
+#status-incident-detection i.pulse {
+    color: #ef4444;
+}
+
+#status-traffic-analysis {
+    border-left-color: #3b82f6;
+}
+
+#status-traffic-analysis i.pulse {
+    color: #3b82f6;
+}
+
+/* Responsive styles */
+/* Detection boxes for video finder */
+.detection-box {
+    position: absolute;
+    border: 3px solid;
+    border-radius: 4px;
+    pointer-events: none;
+    z-index: 10;
+    animation: pulse 2s infinite;
+}
+
+.detection-box.person {
+    border-color: #10b981;
+}
+
+.detection-box.vehicle {
+    border-color: #3b82f6;
+}
+
+.detection-label {
+    position: absolute;
+    top: -25px;
+    left: 0;
+    padding: 2px 8px;
+    border-radius: 4px;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.detection-label.person {
+    background-color: #10b981;
+}
+
+.detection-label.vehicle {
+    background-color: #3b82f6;
+}
+
+@media (max-width: 768px) {
+    .live-status-indicator {
+        padding: 6px 10px;
+    }
+
+    .live-status-indicator span {
+        font-size: 12px;
+    }
+}

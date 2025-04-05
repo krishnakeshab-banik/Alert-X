@@ -1,0 +1,12 @@
+{
+  "name": "alert-x",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "install-deps": "cd project && npm install",
+    "dev": "cd project && npm run dev",
+    "build": "cd project && npm run build",
+    "preview": "cd project && npm run preview"
+  }
+}

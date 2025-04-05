@@ -1,0 +1,727 @@
+/* Enhanced Live Finder Styles with Modern Animations */
+
+/* Variables from the main theme */
+:root {
+  /* Extended color palette */
+  --primary-dark: #4b51c6;
+  --primary-light: #8a90ff;
+  --secondary-dark: #3f45b5;
+  --secondary-light: #7a7ff5;
+  --accent-dark: #e64c4c;
+  --accent-light: #ff8a8a;
+  --success-dark: #0d9668;
+  --success-light: #34d399;
+  --warning-dark: #d97706;
+  --warning-light: #fbbf24;
+  --danger-dark: #dc2626;
+  --danger-light: #f87171;
+  --dark-blue: #1e293b;
+  --light-blue: #e0f2fe;
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.15);
+  --shadow-inner: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+  --shadow-glow: 0 0 15px rgba(100, 108, 255, 0.5);
+  
+  /* Animation timing */
+  --transition-fast: 0.3s ease;
+  --transition-medium: 0.5s ease;
+  --transition-slow: 0.8s ease;
+}
+
+/* Main container enhancements */
+.live-finder-container {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+/* Header animations */
+.live-finder-header {
+  position: relative;
+  overflow: hidden;
+  padding: 2.5rem 1rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(100, 108, 255, 0.08), rgba(144, 137, 252, 0.05));
+}
+
+.live-finder-header h1 {
+  font-size: 2.8rem;
+  margin-bottom: 0.8rem;
+  background: linear-gradient(90deg, var(--text-color), var(--primary-color));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.8s ease forwards 0.2s;
+}
+
+.live-finder-header p {
+  font-size: 1.2rem;
+  max-width: 600px;
+  margin: 0 auto;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.8s ease forwards 0.4s;
+}
+
+/* Control Panel Enhancements */
+.control-panel {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  background: var(--card-background);
+  transform: translateY(20px);
+  opacity: 0;
+  animation: fadeInUp 0.8s ease forwards 0.6s;
+  transition: all var(--transition-medium);
+}
+
+.control-panel:hover {
+  box-shadow: var(--shadow-xl);
+  transform: translateY(-5px);
+}
+
+.panel-section {
+  padding: 1.5rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  transition: all var(--transition-fast);
+}
+
+.panel-section:last-child {
+  border-bottom: none;
+}
+
+.panel-section:hover {
+  background-color: rgba(100, 108, 255, 0.03);
+}
+
+.panel-section h3 {
+  position: relative;
+  padding-left: 1.5rem;
+  margin-bottom: 1.2rem;
+  font-weight: 600;
+}
+
+.panel-section h3::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 18px;
+  background: linear-gradient(to bottom, var(--primary-color), var(--secondary-color));
+  border-radius: 2px;
+}
+
+/* Button Enhancements */
+.btn-primary {
+  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+  border: none;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transform: translateX(-100%);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-primary:hover::after {
+  animation: shimmer 1.5s infinite;
+}
+
+.btn-outline {
+  background: transparent;
+  border: 1px solid var(--primary-color);
+  color: var(--primary-color);
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.btn-outline:hover {
+  background-color: rgba(100, 108, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+.btn-outline.active {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+/* Tool Buttons Enhancement */
+.detection-tools {
+  gap: 1rem;
+}
+
+.tool-btn {
+  background-color: var(--background-color);
+  border-radius: 12px;
+  padding: 1.5rem 1rem;
+  transition: all var(--transition-medium);
+  border: 1px solid var(--border-color);
+  position: relative;
+  overflow: hidden;
+}
+
+.tool-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--transition-medium);
+}
+
+.tool-btn:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--primary-light);
+}
+
+.tool-btn:hover::before {
+  transform: scaleX(1);
+}
+
+.tool-btn i {
+  font-size: 2rem;
+  margin-bottom: 0.8rem;
+  transition: all var(--transition-medium);
+}
+
+.tool-btn:hover i {
+  transform: scale(1.2);
+  color: var(--primary-dark);
+}
+
+.tool-btn span {
+  font-weight: 500;
+  transition: all var(--transition-fast);
+}
+
+.tool-btn.active {
+  background: linear-gradient(135deg, rgba(100, 108, 255, 0.1), rgba(144, 137, 252, 0.1));
+  border-color: var(--primary-color);
+}
+
+.tool-btn.active::before {
+  transform: scaleX(1);
+}
+
+/* Status Indicators Enhancement */
+.status-indicators {
+  gap: 1rem;
+}
+
+.status-item {
+  background-color: var(--background-color);
+  border-radius: 10px;
+  padding: 1rem;
+  transition: all var(--transition-fast);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+}
+
+.status-item:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--primary-light);
+}
+
+.status-label {
+  font-weight: 600;
+  color: var(--text-color);
+  opacity: 0.8;
+}
+
+.status-value {
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.status-value.online {
+  color: var(--success-color);
+}
+
+.status-value.online i {
+  animation: pulse 2s infinite;
+}
+
+/* Main Display Area Enhancement */
+.main-display {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.8s ease forwards 0.8s;
+}
+
+/* Camera Grid Enhancement */
+.camera-grid {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  transition: all var(--transition-medium);
+  gap: 0.8rem;
+  padding: 0.8rem;
+}
+
+.camera-grid:hover {
+  box-shadow: var(--shadow-xl);
+}
+
+.camera-cell {
+  border-radius: 10px;
+  overflow: hidden;
+  transition: all var(--transition-fast);
+  transform: scale(1);
+}
+
+.camera-cell:hover {
+  transform: scale(1.02);
+  box-shadow: var(--shadow-md);
+  z-index: 2;
+}
+
+.camera-overlay {
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 50%);
+  transition: opacity var(--transition-medium);
+}
+
+.camera-info {
+  transform: translateY(10px);
+  opacity: 0;
+  transition: all var(--transition-fast);
+}
+
+.camera-cell:hover .camera-info {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.camera-control-btn {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(4px);
+  transition: all var(--transition-fast);
+}
+
+.camera-control-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.1);
+}
+
+/* Detection Panel Enhancement */
+.detection-panel {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  transition: all var(--transition-medium);
+}
+
+.detection-panel.active {
+  animation: slideInRight 0.5s ease forwards;
+}
+
+.panel-header {
+  background: linear-gradient(90deg, var(--background-color), rgba(100, 108, 255, 0.05));
+  padding: 1.2rem 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.panel-header h3 {
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+.close-panel-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+}
+
+.close-panel-btn:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  transform: rotate(90deg);
+}
+
+/* Search Panel Enhancement */
+.search-panel {
+  padding: 1.5rem;
+}
+
+.search-panel.active {
+  animation: fadeIn 0.5s ease forwards;
+}
+
+.upload-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.upload-preview {
+  width: 180px;
+  height: 180px;
+  border-radius: 12px;
+  border: 2px dashed var(--border-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-medium);
+  overflow: hidden;
+  position: relative;
+}
+
+.upload-preview:hover {
+  border-color: var(--primary-color);
+  transform: scale(1.02);
+  box-shadow: var(--shadow-md);
+}
+
+.upload-preview i {
+  font-size: 3rem;
+  color: var(--primary-color);
+  opacity: 0.5;
+  margin-bottom: 1rem;
+  transition: all var(--transition-fast);
+}
+
+.upload-preview:hover i {
+  opacity: 0.8;
+  transform: scale(1.1);
+}
+
+.upload-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.upload-btn::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transform: translateX(-100%);
+}
+
+.upload-btn:hover::after {
+  animation: shimmer 1.5s infinite;
+}
+
+/* Form Elements Enhancement */
+.form-group {
+  margin-bottom: 1.2rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: var(--text-color);
+}
+
+.form-group select,
+.form-group input {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background-color: var(--input-background);
+  color: var(--text-color);
+  transition: all var(--transition-fast);
+}
+
+.form-group select:focus,
+.form-group input:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(100, 108, 255, 0.2);
+  outline: none;
+}
+
+.form-group select:hover,
+.form-group input:hover {
+  border-color: var(--primary-light);
+}
+
+/* Checkbox Enhancement */
+.checkbox-group {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.8rem;
+}
+
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  padding: 0.5rem;
+  border-radius: 6px;
+}
+
+.checkbox-container:hover {
+  background-color: rgba(100, 108, 255, 0.05);
+}
+
+.checkbox-container input {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  accent-color: var(--primary-color);
+}
+
+.checkbox-label {
+  font-weight: 500;
+}
+
+/* Empty State Enhancement */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem;
+  text-align: center;
+}
+
+.empty-state i {
+  font-size: 4rem;
+  color: var(--muted-text);
+  margin-bottom: 1.5rem;
+  opacity: 0.5;
+  animation: pulse 3s infinite;
+}
+
+.empty-state h3 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: var(--text-color);
+}
+
+.empty-state p {
+  font-size: 1.1rem;
+  color: var(--muted-text);
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+/* Detection Box Enhancement */
+.detection-box {
+  border: 2px solid var(--primary-color);
+  border-radius: 6px;
+  box-shadow: 0 0 0 4px rgba(var(--primary-color-rgb), 0.3);
+  animation: glow 2s infinite;
+}
+
+.detection-box.person {
+  border-color: var(--success-color);
+  box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.3);
+}
+
+.detection-box.vehicle {
+  border-color: var(--warning-color);
+  box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.3);
+}
+
+.detection-box.incident {
+  border-color: var(--danger-color);
+  box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.3);
+}
+
+.detection-label {
+  border-radius: 6px;
+  padding: 0.4rem 0.8rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+  box-shadow: var(--shadow-md);
+  animation: fadeInDown 0.3s ease;
+}
+
+/* Traffic Categories Enhancement */
+.traffic-categories {
+  background-color: var(--background-color);
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: var(--shadow-inner);
+}
+
+.traffic-category {
+  padding: 0.6rem;
+  border-radius: 6px;
+  transition: all var(--transition-fast);
+}
+
+.traffic-category:hover {
+  background-color: rgba(100, 108, 255, 0.05);
+}
+
+.category-color {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  transition: all var(--transition-fast);
+}
+
+.traffic-category:hover .category-color {
+  transform: scale(1.2);
+}
+
+/* Animation Keyframes */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 0 4px rgba(var(--primary-color-rgb), 0.3);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(var(--primary-color-rgb), 0.5);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+  .control-panel {
+    flex-direction: column;
+  }
+  
+  .panel-section {
+    width: 100%;
+  }
+  
+  .detection-tools {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .live-finder-header h1 {
+    font-size: 2.2rem;
+  }
+  
+  .live-finder-header p {
+    font-size: 1rem;
+  }
+  
+  .main-display {
+    flex-direction: column;
+  }
+  
+  .detection-panel {
+    width: 100%;
+    margin-top: 1.5rem;
+  }
+  
+  .camera-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 576px) {
+  .detection-tools {
+    grid-template-columns: 1fr;
+  }
+  
+  .checkbox-group {
+    grid-template-columns: 1fr;
+  }
+}

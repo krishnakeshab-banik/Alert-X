@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Finder - Alert X</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="video-finder.css">
+    <link rel="stylesheet" href="video-detection.css">
+    <link rel="stylesheet" href="live-status.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <a href="index.html" class="logo-text">Alert <span class="highlight">X</span></a>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="video-finder.html" class="active">Video Finder</a>
+            <a href="live-finder.html">Live Finder</a>
+            <a href="reports.html">Reports</a>
+            <div class="profile-dropdown">
+                <button class="profile-btn">
+                    <img src="" alt="Profile" id="profileImage" class="profile-img">
+                    <span id="profileName">User</span>
+                </button>
+                <div class="dropdown-content">
+                    <a href="profile.html">Profile</a>
+                    <a href="settings.html">Settings</a>
+                    <a href="#" id="logoutBtn">Logout</a>
+                </div>
+            </div>
+        </div>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <main class="video-finder-container">
+        <h1>Video Finder</h1>
+        
+        <div class="upload-section">
+            <div class="video-grid" id="videoGrid"></div>
+            <button id="addVideoBtn" class="add-video-btn">
+                <i class="fas fa-plus"></i> Add Video
+            </button>
+        </div>
+
+        <div class="detection-section">
+            <div class="detection-type">
+                <h3>Detection Type</h3>
+                <div class="detection-options">
+                    <button class="detection-btn active" data-type="person">
+                        <i class="fas fa-user"></i> Person Detection
+                    </button>
+                    <button class="detection-btn" data-type="vehicle">
+                        <i class="fas fa-car"></i> Vehicle Detection
+                    </button>
+                </div>
+            </div>
+
+            <div class="search-input">
+                <div id="personSearch" class="search-type active">
+                    <label>Upload Person Image</label>
+                    <input type="file" accept="image/*" id="personImage">
+                    <div class="preview-container" id="personPreview"></div>
+                </div>
+                <div id="vehicleSearch" class="search-type">
+                    <label>Enter Vehicle Number</label>
+                    <input type="text" id="vehicleNumber" placeholder="Enter vehicle number plate">
+                </div>
+            </div>
+
+            <button id="startAnalysis" class="analysis-btn">
+                Start Analysis
+            </button>
+        </div>
+
+        <div class="results-section" id="resultsSection">
+            <h2>Analysis Results</h2>
+            <div class="results-grid" id="resultsGrid"></div>
+        </div>
+    </main>
+
+    <script type="module" src="video-finder.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+</body>
+</html>

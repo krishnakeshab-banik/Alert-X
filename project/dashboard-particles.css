@@ -1,0 +1,53 @@
+/* Dashboard particles styling */
+.dashboard-container {
+  position: relative;
+  overflow: hidden;
+}
+
+#dashboard-particles-js {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  pointer-events: none; /* Ensures clicks pass through to elements below */
+}
+
+/* Make sure dashboard content is above particles */
+.dashboard-container h1,
+.dashboard-grid {
+  position: relative;
+  z-index: 1;
+}
+
+/* Add subtle glow to dashboard cards when hovered */
+.dashboard-card {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.dashboard-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, rgba(100, 108, 255, 0.1) 0%, rgba(0, 0, 0, 0) 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.dashboard-card:hover::before {
+  opacity: 1;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  #dashboard-particles-js {
+    opacity: 0.5;
+  }
+}

@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alert X - AI-Powered Security Platform</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="themes.css">
+    <link rel="stylesheet" href="navbar.css">
+    <link rel="stylesheet" href="homepage.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.11.4/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+</head>
+<body>
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="preloader-content">
+            <div class="preloader-logo">Alert X</div>
+            <div class="preloader-spinner"></div>
+            <div class="preloader-text">Loading the future of security...</div>
+        </div>
+    </div>
+
+    <!-- Custom cursor -->
+    <div class="custom-cursor"></div>
+
+    <!-- Scroll indicator -->
+    <div class="scroll-indicator"></div>
+    <nav class="navbar">
+        <div class="logo">Alert X</div>
+        <div class="nav-links">
+            <a href="index.html" class="active">Home</a>
+            <a href="about.html">About</a>
+            <a href="team.html">Team</a>
+            <a href="subscription.html">Pricing</a>
+            <div class="auth-section">
+                <a href="login.html" class="login-btn">Login</a>
+                <a href="signup.html" class="signup-btn">Sign Up</a>
+                <div class="user-section" style="display: none;">
+                    <a href="dashboard.html" class="dashboard-btn">Dashboard</a>
+                    <a href="live-finder.html" class="dashboard-btn">Live Finder</a>
+                    <div class="profile-dropdown">
+                        <button class="profile-btn">
+                            <img src="https://via.placeholder.com/32" alt="Profile" id="profileImage" class="profile-img">
+                            <span id="profileName">User</span>
+                        </button>
+                        <div class="dropdown-content">
+                            <a href="profile.html">Profile</a>
+                            <a href="settings.html">Settings</a>
+                            <a href="#" id="logoutBtn">Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero">
+            <!-- Particles.js background -->
+            <div id="particles-js"></div>
+
+            <div class="hero-content" data-aos="fade-right" data-aos-duration="1000">
+                <div class="hero-badge">AI-Powered Security</div>
+                <h1 class="animated-heading glitch" data-text="Revolutionizing Security with AI-Powered Insights">
+                    Revolutionizing Security with <span class="gradient-text">AI-Powered</span> Insights
+                </h1>
+                <p class="hero-description">Advanced surveillance and security solutions that transform raw data into actionable intelligence, enhancing safety and efficiency.</p>
+                <div class="cta-buttons">
+                    <a href="signup.html" class="cta-primary pulse-animation">Get Started</a>
+                    <a href="#features" class="cta-secondary">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number" data-count="99.8">0</span>%
+                        <span class="stat-label">Accuracy</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-count="500">0</span>+
+                        <span class="stat-label">Clients</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-count="24">0</span>/7
+                        <span class="stat-label">Monitoring</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-animation">
+                <div id="canvas-container"></div>
+                <div class="floating-elements">
+                    <div class="floating-element fe-1"><i class="fas fa-shield-alt"></i></div>
+                    <div class="floating-element fe-2"><i class="fas fa-video"></i></div>
+                    <div class="floating-element fe-3"><i class="fas fa-chart-line"></i></div>
+                    <div class="floating-element fe-4"><i class="fas fa-lock"></i></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="trusted-by">
+            <div class="container">
+                <h3 data-aos="fade-up">Trusted by Industry Leaders</h3>
+                <div class="client-logos" data-aos="fade-up" data-aos-delay="200">
+                    <div class="client-logo"><img src="https://via.placeholder.com/150x50?text=Client+1" alt="Client 1"></div>
+                    <div class="client-logo"><img src="https://via.placeholder.com/150x50?text=Client+2" alt="Client 2"></div>
+                    <div class="client-logo"><img src="https://via.placeholder.com/150x50?text=Client+3" alt="Client 3"></div>
+                    <div class="client-logo"><img src="https://via.placeholder.com/150x50?text=Client+4" alt="Client 4"></div>
+                    <div class="client-logo"><img src="https://via.placeholder.com/150x50?text=Client+5" alt="Client 5"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="features">
+            <div class="section-header" data-aos="fade-up">
+                <h2 class="glitch" data-text="Powerful Features">Powerful Features</h2>
+                <p>Our cutting-edge technology provides comprehensive security solutions</p>
+            </div>
+            <div class="feature-grid">
+                <div class="feature-card" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="feature-icon-wrapper">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <span class="feature-badge">Most Popular</span>
+                    <h3>Video Finder</h3>
+                    <p>Advanced video analysis for quick person and vehicle detection with 99.8% accuracy</p>
+                    <a href="#" class="feature-link" onclick="showToast('Video Finder', 'Learn more about our advanced video analysis technology', 'info'); return false;">Learn more <i class="fas fa-chevron-right"></i></a>
+                </div>
+                <div class="feature-card" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="feature-icon-wrapper">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                    <h3>Live Finder</h3>
+                    <p>Real-time surveillance with instant alerts and notifications to your mobile device</p>
+                    <a href="#" class="feature-link" onclick="showToast('Live Finder', 'Discover real-time surveillance capabilities', 'info'); return false;">Learn more <i class="fas fa-chevron-right"></i></a>
+                </div>
+                <div class="feature-card" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="feature-icon-wrapper">
+                        <i class="fas fa-car-crash"></i>
+                    </div>
+                    <span class="feature-badge">New</span>
+                    <h3>Accident Detection</h3>
+                    <p>Immediate accident detection and emergency response coordination system</p>
+                    <a href="#" class="feature-link" onclick="showToast('Accident Detection', 'Learn about our emergency response system', 'info'); return false;">Learn more <i class="fas fa-chevron-right"></i></a>
+                </div>
+                <div class="feature-card" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="feature-icon-wrapper">
+                        <i class="fas fa-map-marked-alt"></i>
+                    </div>
+                    <h3>Congestion Heatmaps</h3>
+                    <p>Visual analysis of traffic patterns and congestion for optimized urban planning</p>
+                    <a href="#" class="feature-link" onclick="showToast('Congestion Heatmaps', 'Explore our traffic analysis technology', 'info'); return false;">Learn more <i class="fas fa-chevron-right"></i></a>
+                </div>
+            </div>
+
+            <!-- Video demonstration -->
+            <div class="video-section" data-aos="fade-up" data-aos-delay="200">
+                <h3>See Alert X in Action</h3>
+                <div class="video-placeholder" data-video-id="dQw4w9WgXcQ">
+                    <img src="https://via.placeholder.com/1200x675?text=Alert+X+Demo" alt="Alert X Demo Video">
+                    <div class="video-play-button">
+                        <i class="fas fa-play"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="how-it-works">
+            <div class="container">
+                <div class="section-header" data-aos="fade-up">
+                    <h2>How It Works</h2>
+                    <p>Simple, powerful, and effective security management in four easy steps</p>
+                </div>
+                <div class="steps-container">
+                    <div class="step" data-aos="fade-up" data-aos-delay="100">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3>Connect</h3>
+                            <p>Integrate your existing cameras and security systems with our platform</p>
+                        </div>
+                    </div>
+                    <div class="step" data-aos="fade-up" data-aos-delay="200">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3>Analyze</h3>
+                            <p>Our AI processes video feeds to identify objects, people, and potential threats</p>
+                        </div>
+                    </div>
+                    <div class="step" data-aos="fade-up" data-aos-delay="300">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3>Alert</h3>
+                            <p>Receive real-time notifications when important events are detected</p>
+                        </div>
+                    </div>
+                    <div class="step" data-aos="fade-up" data-aos-delay="400">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h3>Act</h3>
+                            <p>Respond quickly with our integrated action plans and coordination tools</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="stats-section">
+            <div class="container">
+                <div class="stats-grid">
+                    <div class="stat-box" data-aos="fade-up" data-aos-delay="100">
+                        <div class="stat-icon"><i class="fas fa-eye"></i></div>
+                        <div class="stat-number"><span class="counter" data-count="10000">0</span>+</div>
+                        <div class="stat-label">Cameras Monitored</div>
+                    </div>
+                    <div class="stat-box" data-aos="fade-up" data-aos-delay="200">
+                        <div class="stat-icon"><i class="fas fa-bell"></i></div>
+                        <div class="stat-number"><span class="counter" data-count="5000">0</span>+</div>
+                        <div class="stat-label">Alerts Per Day</div>
+                    </div>
+                    <div class="stat-box" data-aos="fade-up" data-aos-delay="300">
+                        <div class="stat-icon"><i class="fas fa-city"></i></div>
+                        <div class="stat-number"><span class="counter" data-count="75">0</span>+</div>
+                        <div class="stat-label">Cities Protected</div>
+                    </div>
+                    <div class="stat-box" data-aos="fade-up" data-aos-delay="400">
+                        <div class="stat-icon"><i class="fas fa-user-shield"></i></div>
+                        <div class="stat-number"><span class="counter" data-count="1000000">0</span>+</div>
+                        <div class="stat-label">People Safeguarded</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="testimonials">
+            <div class="section-header" data-aos="fade-up">
+                <h2 class="glitch" data-text="What Our Users Say">What Our Users Say</h2>
+                <p>Hear from security professionals who rely on Alert X every day</p>
+            </div>
+            <div class="testimonial-container" data-aos="fade-up" data-aos-delay="200">
+                <div class="testimonial-slider">
+                    <div class="testimonial active">
+                        <div class="testimonial-content">
+                            <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                            <p>"Alert X has transformed how we manage city security. The AI-powered insights have reduced our response time by 45% and improved overall safety. The platform's intuitive interface makes it easy for our team to adopt."</p>
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="testimonial-metrics">
+                                <div class="metric">
+                                    <span class="metric-value">45%</span>
+                                    <span class="metric-label">Faster Response</span>
+                                </div>
+                                <div class="metric">
+                                    <span class="metric-value">30%</span>
+                                    <span class="metric-label">Cost Reduction</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="testimonial-author">
+                            <img src="https://via.placeholder.com/60x60" alt="John Smith" class="author-image">
+                            <div class="author-info">
+                                <cite>John Smith</cite>
+                                <span>City Security Manager</span>
+                                <div class="author-company">
+                                    <img src="https://via.placeholder.com/80x20?text=CitySecure" alt="CitySecure">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial">
+                        <div class="testimonial-content">
+                            <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                            <p>"The AI-powered insights have improved our response time significantly. We can now identify and respond to incidents before they escalate, saving both time and resources. The mobile alerts are particularly valuable for our officers in the field."</p>
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="testimonial-metrics">
+                                <div class="metric">
+                                    <span class="metric-value">60%</span>
+                                    <span class="metric-label">Incident Prevention</span>
+                                </div>
+                                <div class="metric">
+                                    <span class="metric-value">24/7</span>
+                                    <span class="metric-label">Monitoring</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="testimonial-author">
+                            <img src="https://via.placeholder.com/60x60" alt="Sarah Johnson" class="author-image">
+                            <div class="author-info">
+                                <cite>Sarah Johnson</cite>
+                                <span>Police Department</span>
+                                <div class="author-company">
+                                    <img src="https://via.placeholder.com/80x20?text=MetroPD" alt="Metro Police Department">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial">
+                        <div class="testimonial-content">
+                            <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                            <p>"An invaluable tool for modern surveillance needs. The platform's ability to analyze and categorize footage has revolutionized how we approach security consulting. The customizable dashboards allow us to create tailored solutions for each client."</p>
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <div class="testimonial-metrics">
+                                <div class="metric">
+                                    <span class="metric-value">100+</span>
+                                    <span class="metric-label">Clients Served</span>
+                                </div>
+                                <div class="metric">
+                                    <span class="metric-value">85%</span>
+                                    <span class="metric-label">Client Retention</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="testimonial-author">
+                            <img src="https://via.placeholder.com/60x60" alt="Mike Brown" class="author-image">
+                            <div class="author-info">
+                                <cite>Mike Brown</cite>
+                                <span>Security Consultant</span>
+                                <div class="author-company">
+                                    <img src="https://via.placeholder.com/80x20?text=SecureVision" alt="SecureVision">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider-dots"></div>
+                <div class="slider-arrows">
+                    <button class="arrow prev-arrow"><i class="fas fa-chevron-left"></i></button>
+                    <button class="arrow next-arrow"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <div class="container">
+                <div class="cta-content" data-aos="fade-up">
+                    <h2 class="glitch" data-text="Ready to Transform Your Security Operations?">Ready to Transform Your Security Operations?</h2>
+                    <p>Join thousands of organizations that trust Alert X for their security needs</p>
+                    <div class="cta-countdown">
+                        <div class="countdown-label">Limited Time Offer:</div>
+                        <div class="countdown-timer">
+                            <div class="countdown-item">
+                                <span class="countdown-value" id="countdown-days">30</span>
+                                <span class="countdown-unit">Days</span>
+                            </div>
+                            <div class="countdown-item">
+                                <span class="countdown-value" id="countdown-hours">24</span>
+                                <span class="countdown-unit">Hours</span>
+                            </div>
+                            <div class="countdown-item">
+                                <span class="countdown-value" id="countdown-minutes">00</span>
+                                <span class="countdown-unit">Minutes</span>
+                            </div>
+                            <div class="countdown-item">
+                                <span class="countdown-value" id="countdown-seconds">00</span>
+                                <span class="countdown-unit">Seconds</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cta-buttons">
+                        <a href="signup.html" class="cta-primary" onclick="showToast('Welcome!', 'Starting your journey with Alert X', 'success'); return true;">Get Started Today</a>
+                        <a href="subscription.html" class="cta-secondary" onclick="showToast('Pricing Plans', 'Viewing our flexible subscription options', 'info'); return true;">View Pricing</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Back to top button -->
+    <div class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>Email: info@alertx.com</p>
+                <p>Phone: (555) 123-4567</p>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Newsletter</h3>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Enter your email">
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Alert X. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script type="module" src="main.js"></script>
+    <script src="homepage.js"></script>
+    <script src="homepage-animations.js"></script>
+</body>
+</html>

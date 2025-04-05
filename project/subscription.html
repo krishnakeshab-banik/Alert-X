@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing - Alert X</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="navbar.css">
+    <link rel="stylesheet" href="subscription.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">
+            <span class="logo-text">Alert <span class="highlight">X</span></span>
+        </div>
+        <div class="nav-links">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="about.html" class="nav-link">About</a>
+            <a href="team.html" class="nav-link">Team</a>
+            <a href="subscription.html" class="nav-link active">Pricing</a>
+            <div class="auth-section">
+                <a href="login.html" class="login-btn">Login</a>
+                <a href="signup.html" class="signup-btn">Sign Up</a>
+                <div class="user-section" style="display: none;">
+                    <a href="dashboard.html" class="dashboard-btn">Dashboard</a>
+                    <div class="profile-dropdown">
+                        <button class="profile-btn">
+                            <img src="https://via.placeholder.com/32" alt="Profile" id="profileImage" class="profile-img">
+                            <span id="profileName">User</span>
+                        </button>
+                        <div class="dropdown-content">
+                            <a href="profile.html">Profile</a>
+                            <a href="settings.html">Settings</a>
+                            <a href="#" id="logoutBtn">Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <main>
+        <section class="pricing-hero">
+            <div class="pricing-hero-content">
+                <h1>Choose the Right Plan for Your Security Needs</h1>
+                <p>Flexible pricing options designed to scale with your requirements</p>
+            </div>
+        </section>
+
+        <section class="pricing-toggle">
+            <div class="toggle-container">
+                <span class="toggle-label active">Monthly</span>
+                <label class="switch">
+                    <input type="checkbox" id="billing-toggle">
+                    <span class="slider round"></span>
+                </label>
+                <span class="toggle-label">Yearly <span class="discount-badge">Save 20%</span></span>
+            </div>
+        </section>
+
+        <section class="pricing-plans">
+            <div class="plan-card free">
+                <div class="plan-header">
+                    <h3>Free</h3>
+                    <div class="price">
+                        <span class="amount">$0</span>
+                        <span class="period">/month</span>
+                    </div>
+                    <p class="plan-description">For individuals testing the platform</p>
+                </div>
+                <div class="plan-features">
+                    <ul>
+                        <li><i class="fas fa-check"></i> 2 video uploads per month</li>
+                        <li><i class="fas fa-check"></i> Basic AI-based reports</li>
+                        <li><i class="fas fa-check"></i> Person & vehicle detection</li>
+                        <li><i class="fas fa-times"></i> Live monitoring</li>
+                        <li><i class="fas fa-times"></i> Accident detection</li>
+                        <li><i class="fas fa-times"></i> Congestion heatmaps</li>
+                        <li><i class="fas fa-times"></i> API access</li>
+                    </ul>
+                </div>
+                <div class="plan-cta">
+                    <a href="signup.html" class="cta-button">Get Started for Free</a>
+                </div>
+            </div>
+
+            <div class="plan-card basic">
+                <div class="plan-header">
+                    <h3>Basic</h3>
+                    <div class="price">
+                        <span class="amount monthly-price">$19.99</span>
+                        <span class="amount yearly-price">$15.99</span>
+                        <span class="period">/month</span>
+                    </div>
+                    <p class="plan-description">For small businesses & individuals</p>
+                </div>
+                <div class="plan-features">
+                    <ul>
+                        <li><i class="fas fa-check"></i> 10 video uploads per month</li>
+                        <li><i class="fas fa-check"></i> 3 live monitoring feeds</li>
+                        <li><i class="fas fa-check"></i> Person & vehicle detection</li>
+                        <li><i class="fas fa-check"></i> Accident detection</li>
+                        <li><i class="fas fa-check"></i> Basic congestion heatmaps</li>
+                        <li><i class="fas fa-check"></i> Email support</li>
+                        <li><i class="fas fa-times"></i> API access</li>
+                    </ul>
+                </div>
+                <div class="plan-cta">
+                    <a href="signup.html" class="cta-button">Choose Basic</a>
+                </div>
+            </div>
+
+            <div class="plan-card pro popular">
+                <div class="popular-badge">Most Popular</div>
+                <div class="plan-header">
+                    <h3>Pro</h3>
+                    <div class="price">
+                        <span class="amount monthly-price">$49.99</span>
+                        <span class="amount yearly-price">$39.99</span>
+                        <span class="period">/month</span>
+                    </div>
+                    <p class="plan-description">For companies, security teams & schools</p>
+                </div>
+                <div class="plan-features">
+                    <ul>
+                        <li><i class="fas fa-check"></i> 30 video uploads per month</li>
+                        <li><i class="fas fa-check"></i> 10 live monitoring feeds</li>
+                        <li><i class="fas fa-check"></i> Advanced AI analysis</li>
+                        <li><i class="fas fa-check"></i> Real-time alerts & notifications</li>
+                        <li><i class="fas fa-check"></i> Advanced congestion heatmaps</li>
+                        <li><i class="fas fa-check"></i> Priority support</li>
+                        <li><i class="fas fa-check"></i> Basic API access</li>
+                    </ul>
+                </div>
+                <div class="plan-cta">
+                    <a href="signup.html" class="cta-button">Choose Pro</a>
+                </div>
+            </div>
+
+            <div class="plan-card enterprise">
+                <div class="plan-header">
+                    <h3>Enterprise</h3>
+                    <div class="price">
+                        <span class="amount">Custom</span>
+                        <span class="period">Pricing</span>
+                    </div>
+                    <p class="plan-description">For large organizations & smart cities</p>
+                </div>
+                <div class="plan-features">
+                    <ul>
+                        <li><i class="fas fa-check"></i> Unlimited video uploads</li>
+                        <li><i class="fas fa-check"></i> 50+ live monitoring feeds</li>
+                        <li><i class="fas fa-check"></i> Custom AI models</li>
+                        <li><i class="fas fa-check"></i> Advanced incident detection</li>
+                        <li><i class="fas fa-check"></i> Custom reporting & analytics</li>
+                        <li><i class="fas fa-check"></i> Dedicated support team</li>
+                        <li><i class="fas fa-check"></i> Full API access & integration</li>
+                    </ul>
+                </div>
+                <div class="plan-cta">
+                    <a href="contact.html" class="cta-button">Contact Us</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="feature-comparison">
+            <h2>Feature Comparison</h2>
+            <div class="table-container">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Features</th>
+                            <th>Free</th>
+                            <th>Basic</th>
+                            <th>Pro</th>
+                            <th>Enterprise</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Video uploads per month</td>
+                            <td>2</td>
+                            <td>10</td>
+                            <td>30</td>
+                            <td>Unlimited</td>
+                        </tr>
+                        <tr>
+                            <td>Live monitoring feeds</td>
+                            <td><i class="fas fa-times"></i></td>
+                            <td>3</td>
+                            <td>10</td>
+                            <td>50+</td>
+                        </tr>
+                        <tr>
+                            <td>Person & vehicle detection</td>
+                            <td><i class="fas fa-check"></i></td>
+                            <td><i class="fas fa-check"></i></td>
+                            <td><i class="fas fa-check"></i></td>
+                            <td><i class="fas fa-check"></i></td>
+                        </tr>
+                        <tr>
+                            <td>Accident detection</td>
+                            <td><i class="fas fa-times"></i></td>
+                            <td><i class="fas fa-check"></i></td>
+                            <td><i class="fas fa-check"></i></td>
+                            <td><i class="fas fa-check"></i></td>
+                        </tr>
+                        <tr>
+                            <td>Congestion heatmaps</td>
+                            <td><i class="fas fa-times"></i></td>
+                            <td>Basic</td>
+                            <td>Advanced</td>
+                            <td>Custom</td>
+                        </tr>
+                        <tr>
+                            <td>Report generation</td>
+                            <td>Basic</td>
+                            <td>Standard</td>
+                            <td>Advanced</td>
+                            <td>Custom</td>
+                        </tr>
+                        <tr>
+                            <td>API access</td>
+                            <td><i class="fas fa-times"></i></td>
+                            <td><i class="fas fa-times"></i></td>
+                            <td>Basic</td>
+                            <td>Full</td>
+                        </tr>
+                        <tr>
+                            <td>Customer support</td>
+                            <td>Community</td>
+                            <td>Email</td>
+                            <td>Priority</td>
+                            <td>Dedicated team</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="add-ons">
+            <h2>Add-ons & Customization</h2>
+            <div class="add-ons-grid">
+                <div class="add-on-card">
+                    <div class="add-on-icon">
+                        <i class="fas fa-film"></i>
+                    </div>
+                    <h3>Extra Video Analysis</h3>
+                    <p>Add 5 additional video uploads per month</p>
+                    <span class="add-on-price">$5/month</span>
+                </div>
+                <div class="add-on-card">
+                    <div class="add-on-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Custom AI Models</h3>
+                    <p>Tailored AI detection for specific needs</p>
+                    <span class="add-on-price">Contact us</span>
+                </div>
+                <div class="add-on-card">
+                    <div class="add-on-icon">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <h3>Cloud Storage</h3>
+                    <p>Additional storage for reports and footage</p>
+                    <span class="add-on-price">From $10/month</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="special-offers">
+            <h2>Special Offers</h2>
+            <div class="offers-grid">
+                <div class="offer-card">
+                    <div class="offer-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>Student Discount</h3>
+                    <p>50% off any plan for verified students</p>
+                    <a href="#" class="offer-link">Learn more</a>
+                </div>
+                <div class="offer-card">
+                    <div class="offer-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3>Enterprise Demo</h3>
+                    <p>7-day free trial of all Enterprise features</p>
+                    <a href="#" class="offer-link">Request demo</a>
+                </div>
+                <div class="offer-card">
+                    <div class="offer-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Referral Rewards</h3>
+                    <p>Get 5 free video credits for each referral</p>
+                    <a href="#" class="offer-link">Invite friends</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="faq">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Can I upgrade or downgrade my plan at any time?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, you can change your plan at any time. Changes will be applied at the start of your next billing cycle.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Is there a limit to how many users can access my account?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Basic plans include 3 user accounts, Pro plans include 10 user accounts, and Enterprise plans have unlimited users.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>How accurate is the AI detection system?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Our AI system has a 95%+ accuracy rate for person and vehicle detection, and 90%+ for accident detection under normal conditions.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Do you offer refunds if I'm not satisfied?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We offer a 30-day money-back guarantee for all paid plans if you're not completely satisfied with our service.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <div class="cta-content">
+                <h2>Ready to Transform Your Security?</h2>
+                <p>Join thousands of satisfied customers who trust Alert X for their security needs.</p>
+                <div class="cta-buttons">
+                    <a href="signup.html" class="cta-primary">Get Started Today</a>
+                    <a href="contact.html" class="cta-secondary">Contact Sales</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>Email: info@alertx.com</p>
+                <p>Phone: (555) 123-4567</p>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Newsletter</h3>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Enter your email">
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Alert X. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script type="module" src="nav.js"></script>
+    <script src="subscription.js"></script>
+</body>
+</html> class="footer-content">
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>Email: info@alertx.com</p>
+                <p>Phone: (555) 123-4567</p>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Newsletter</h3>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Enter your email">
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Alert X. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+    <script src="subscription.js"></script>
+</body>
+</html>

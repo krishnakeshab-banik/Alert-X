@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - Alert X</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="themes.css">
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="profile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">Alert X</div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="video-finder.html">Video Finder</a>
+            <a href="live-finder.html">Live Finder</a>
+            <a href="reports.html">Reports</a>
+            <div class="profile-dropdown">
+                <button class="profile-btn">
+                    <img src="" alt="Profile" id="profileImage" class="profile-img">
+                    <span id="profileName">User</span>
+                </button>
+                <div class="dropdown-content">
+                    <a href="profile.html" class="active">Profile</a>
+                    <a href="settings.html">Settings</a>
+                    <a href="#" id="logoutBtn">Logout</a>
+                </div>
+            </div>
+        </div>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <main class="profile-container">
+        <div class="profile-header">
+            <div class="profile-cover">
+                <div class="cover-overlay"></div>
+                <button id="changeCoverBtn" class="change-cover-btn">
+                    <i class="fas fa-camera"></i> Change Cover
+                </button>
+                <input type="file" id="coverUpload" accept="image/*" hidden>
+            </div>
+            <div class="profile-avatar-container">
+                <div class="profile-avatar">
+                    <img src="" alt="Profile" id="profileAvatarLarge">
+                    <div class="avatar-overlay">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                    <input type="file" id="avatarUpload" accept="image/*" hidden>
+                </div>
+                <h1 id="profileFullName">User Name</h1>
+                <p id="profileEmail">user@example.com</p>
+            </div>
+        </div>
+
+        <div class="profile-tabs">
+            <button class="tab-btn active" data-tab="overview">Overview</button>
+            <button class="tab-btn" data-tab="activity">Activity</button>
+            <button class="tab-btn" data-tab="security">Security</button>
+        </div>
+
+        <div class="profile-content">
+            <!-- Overview Tab -->
+            <div class="tab-content active" id="overview">
+                <div class="profile-section">
+                    <h2>Personal Information</h2>
+                    <div class="profile-info-grid">
+                        <div class="profile-info-card">
+                            <div class="info-header">
+                                <i class="fas fa-user"></i>
+                                <h3>Basic Info</h3>
+                            </div>
+                            <div class="info-content">
+                                <div class="info-item">
+                                    <span class="info-label">Full Name</span>
+                                    <span class="info-value" id="infoFullName">User Name</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Username</span>
+                                    <span class="info-value" id="infoUsername">username</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Email</span>
+                                    <span class="info-value" id="infoEmail">user@example.com</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Member Since</span>
+                                    <span class="info-value" id="infoJoinDate">January 1, 2023</span>
+                                </div>
+                            </div>
+                            <button class="edit-info-btn" id="editBasicInfoBtn">
+                                <i class="fas fa-pen"></i> Edit
+                            </button>
+                        </div>
+
+                        <div class="profile-info-card">
+                            <div class="info-header">
+                                <i class="fas fa-briefcase"></i>
+                                <h3>Professional Info</h3>
+                            </div>
+                            <div class="info-content">
+                                <div class="info-item">
+                                    <span class="info-label">Company</span>
+                                    <span class="info-value" id="infoCompany">Not specified</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Job Title</span>
+                                    <span class="info-value" id="infoJobTitle">Not specified</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Industry</span>
+                                    <span class="info-value" id="infoIndustry">Not specified</span>
+                                </div>
+                            </div>
+                            <button class="edit-info-btn" id="editProfessionalInfoBtn">
+                                <i class="fas fa-pen"></i> Edit
+                            </button>
+                        </div>
+
+                        <div class="profile-info-card">
+                            <div class="info-header">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <h3>Location</h3>
+                            </div>
+                            <div class="info-content">
+                                <div class="info-item">
+                                    <span class="info-label">Country</span>
+                                    <span class="info-value" id="infoCountry">Not specified</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">City</span>
+                                    <span class="info-value" id="infoCity">Not specified</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Timezone</span>
+                                    <span class="info-value" id="infoTimezone">Not specified</span>
+                                </div>
+                            </div>
+                            <button class="edit-info-btn" id="editLocationInfoBtn">
+                                <i class="fas fa-pen"></i> Edit
+                            </button>
+                        </div>
+
+                        <div class="profile-info-card">
+                            <div class="info-header">
+                                <i class="fas fa-shield-alt"></i>
+                                <h3>Account Status</h3>
+                            </div>
+                            <div class="info-content">
+                                <div class="info-item">
+                                    <span class="info-label">Plan</span>
+                                    <span class="info-value" id="infoPlan">Free</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Status</span>
+                                    <span class="info-value status-active" id="infoStatus">Active</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Last Login</span>
+                                    <span class="info-value" id="infoLastLogin">Today</span>
+                                </div>
+                            </div>
+                            <button class="edit-info-btn" id="upgradePlanBtn">
+                                <i class="fas fa-arrow-up"></i> Upgrade Plan
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Activity Tab -->
+            <div class="tab-content" id="activity">
+                <div class="profile-section">
+                    <h2>Recent Activity</h2>
+                    <div class="activity-timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-icon">
+                                <i class="fas fa-sign-in-alt"></i>
+                            </div>
+                            <div class="timeline-content">
+                                <h3>Account Login</h3>
+                                <p>You logged in from Chrome on Windows</p>
+                                <span class="timeline-date">Today, 10:30 AM</span>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-icon">
+                                <i class="fas fa-video"></i>
+                            </div>
+                            <div class="timeline-content">
+                                <h3>Video Analysis</h3>
+                                <p>You analyzed 3 videos in Video Finder</p>
+                                <span class="timeline-date">Yesterday, 3:45 PM</span>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-icon">
+                                <i class="fas fa-user-edit"></i>
+                            </div>
+                            <div class="timeline-content">
+                                <h3>Profile Updated</h3>
+                                <p>You updated your profile information</p>
+                                <span class="timeline-date">May 15, 2023, 2:20 PM</span>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-icon">
+                                <i class="fas fa-camera"></i>
+                            </div>
+                            <div class="timeline-content">
+                                <h3>Live Monitoring</h3>
+                                <p>You started a live monitoring session</p>
+                                <span class="timeline-date">May 12, 2023, 9:15 AM</span>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-icon">
+                                <i class="fas fa-user-plus"></i>
+                            </div>
+                            <div class="timeline-content">
+                                <h3>Account Created</h3>
+                                <p>You created your Alert X account</p>
+                                <span class="timeline-date">May 10, 2023, 11:30 AM</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Security Tab -->
+            <div class="tab-content" id="security">
+                <div class="profile-section">
+                    <h2>Security Settings</h2>
+                    <div class="security-cards">
+                        <div class="security-card">
+                            <div class="security-icon">
+                                <i class="fas fa-lock"></i>
+                            </div>
+                            <div class="security-content">
+                                <h3>Password</h3>
+                                <p>Last changed: 30 days ago</p>
+                            </div>
+                            <button class="security-btn" id="changePasswordBtn">Change Password</button>
+                        </div>
+
+                        <div class="security-card">
+                            <div class="security-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <div class="security-content">
+                                <h3>Two-Factor Authentication</h3>
+                                <p>Status: <span class="status-inactive">Not Enabled</span></p>
+                            </div>
+                            <button class="security-btn" id="enable2FABtn">Enable 2FA</button>
+                        </div>
+
+                        <div class="security-card">
+                            <div class="security-icon">
+                                <i class="fas fa-history"></i>
+                            </div>
+                            <div class="security-content">
+                                <h3>Login History</h3>
+                                <p>View your recent login activity</p>
+                            </div>
+                            <button class="security-btn" id="viewLoginHistoryBtn">View History</button>
+                        </div>
+
+                        <div class="security-card">
+                            <div class="security-icon">
+                                <i class="fas fa-bell"></i>
+                            </div>
+                            <div class="security-content">
+                                <h3>Security Alerts</h3>
+                                <p>Status: <span class="status-active">Enabled</span></p>
+                            </div>
+                            <button class="security-btn" id="securityAlertsBtn">Manage Alerts</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Edit Basic Info Modal -->
+    <div class="modal" id="basicInfoModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Edit Basic Information</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="basicInfoForm">
+                    <div class="form-group">
+                        <label for="editFullName">Full Name</label>
+                        <input type="text" id="editFullName" name="fullName">
+                    </div>
+                    <div class="form-group">
+                        <label for="editUsername">Username</label>
+                        <input type="text" id="editUsername" name="username">
+                    </div>
+                    <div class="form-group">
+                        <label for="editEmail">Email</label>
+                        <input type="email" id="editEmail" name="email" disabled>
+                        <small>Email cannot be changed. Contact support for assistance.</small>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="cancel-btn">Cancel</button>
+                        <button type="submit" class="save-btn">Save Changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Professional Info Modal -->
+    <div class="modal" id="professionalInfoModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Edit Professional Information</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="professionalInfoForm">
+                    <div class="form-group">
+                        <label for="editCompany">Company</label>
+                        <input type="text" id="editCompany" name="company">
+                    </div>
+                    <div class="form-group">
+                        <label for="editJobTitle">Job Title</label>
+                        <input type="text" id="editJobTitle" name="jobTitle">
+                    </div>
+                    <div class="form-group">
+                        <label for="editIndustry">Industry</label>
+                        <select id="editIndustry" name="industry">
+                            <option value="">Select Industry</option>
+                            <option value="Technology">Technology</option>
+                            <option value="Finance">Finance</option>
+                            <option value="Healthcare">Healthcare</option>
+                            <option value="Education">Education</option>
+                            <option value="Manufacturing">Manufacturing</option>
+                            <option value="Retail">Retail</option>
+                            <option value="Government">Government</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="cancel-btn">Cancel</button>
+                        <button type="submit" class="save-btn">Save Changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Location Info Modal -->
+    <div class="modal" id="locationInfoModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Edit Location Information</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="locationInfoForm">
+                    <div class="form-group">
+                        <label for="editCountry">Country</label>
+                        <select id="editCountry" name="country">
+                            <option value="">Select Country</option>
+                            <option value="United States">United States</option>
+                            <option value="United Kingdom">United Kingdom</option>
+                            <option value="Canada">Canada</option>
+                            <option value="Australia">Australia</option>
+                            <option value="India">India</option>
+                            <option value="Germany">Germany</option>
+                            <option value="France">France</option>
+                            <option value="Japan">Japan</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="editCity">City</label>
+                        <input type="text" id="editCity" name="city">
+                    </div>
+                    <div class="form-group">
+                        <label for="editTimezone">Timezone</label>
+                        <select id="editTimezone" name="timezone">
+                            <option value="">Select Timezone</option>
+                            <option value="UTC-12:00">UTC-12:00</option>
+                            <option value="UTC-11:00">UTC-11:00</option>
+                            <option value="UTC-10:00">UTC-10:00</option>
+                            <option value="UTC-09:00">UTC-09:00</option>
+                            <option value="UTC-08:00">UTC-08:00 (PST)</option>
+                            <option value="UTC-07:00">UTC-07:00 (MST)</option>
+                            <option value="UTC-06:00">UTC-06:00 (CST)</option>
+                            <option value="UTC-05:00">UTC-05:00 (EST)</option>
+                            <option value="UTC-04:00">UTC-04:00</option>
+                            <option value="UTC-03:00">UTC-03:00</option>
+                            <option value="UTC-02:00">UTC-02:00</option>
+                            <option value="UTC-01:00">UTC-01:00</option>
+                            <option value="UTC+00:00">UTC+00:00 (GMT)</option>
+                            <option value="UTC+01:00">UTC+01:00 (CET)</option>
+                            <option value="UTC+02:00">UTC+02:00</option>
+                            <option value="UTC+03:00">UTC+03:00</option>
+                            <option value="UTC+04:00">UTC+04:00</option>
+                            <option value="UTC+05:00">UTC+05:00</option>
+                            <option value="UTC+05:30">UTC+05:30 (IST)</option>
+                            <option value="UTC+06:00">UTC+06:00</option>
+                            <option value="UTC+07:00">UTC+07:00</option>
+                            <option value="UTC+08:00">UTC+08:00</option>
+                            <option value="UTC+09:00">UTC+09:00 (JST)</option>
+                            <option value="UTC+10:00">UTC+10:00</option>
+                            <option value="UTC+11:00">UTC+11:00</option>
+                            <option value="UTC+12:00">UTC+12:00</option>
+                        </select>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="cancel-btn">Cancel</button>
+                        <button type="submit" class="save-btn">Save Changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Change Password Modal -->
+    <div class="modal" id="changePasswordModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Change Password</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="changePasswordForm">
+                    <div class="form-group">
+                        <label for="currentPassword">Current Password</label>
+                        <input type="password" id="currentPassword" name="currentPassword" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="newPassword">New Password</label>
+                        <input type="password" id="newPassword" name="newPassword" required>
+                        <div class="password-strength"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmNewPassword">Confirm New Password</label>
+                        <input type="password" id="confirmNewPassword" name="confirmNewPassword" required>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="cancel-btn">Cancel</button>
+                        <button type="submit" class="save-btn">Change Password</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.38.4/dist/umd/supabase.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="profile.js"></script>
+</body>
+</html>

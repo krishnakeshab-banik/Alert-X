@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - Alert X</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="settings.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">Alert X</div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="video-finder.html">Video Finder</a>
+            <a href="live-finder.html">Live Finder</a>
+            <a href="reports.html">Reports</a>
+            <div class="profile-dropdown">
+                <button class="profile-btn">
+                    <img src="" alt="Profile" id="profileImage" class="profile-img">
+                    <span id="profileName">User</span>
+                </button>
+                <div class="dropdown-content">
+                    <a href="profile.html">Profile</a>
+                    <a href="settings.html" class="active">Settings</a>
+                    <a href="#" id="logoutBtn">Logout</a>
+                </div>
+            </div>
+        </div>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <main class="settings-container">
+        <div class="settings-header">
+            <h1>Settings</h1>
+            <p>Manage your account settings and preferences</p>
+        </div>
+
+        <div class="settings-layout">
+            <div class="settings-sidebar">
+                <div class="settings-nav">
+                    <a href="#account" class="settings-nav-item active" data-section="account">
+                        <i class="fas fa-user"></i>
+                        <span>Account</span>
+                    </a>
+                    <a href="#appearance" class="settings-nav-item" data-section="appearance">
+                        <i class="fas fa-palette"></i>
+                        <span>Appearance</span>
+                    </a>
+                    <a href="#notifications" class="settings-nav-item" data-section="notifications">
+                        <i class="fas fa-bell"></i>
+                        <span>Notifications</span>
+                    </a>
+                    <a href="#privacy" class="settings-nav-item" data-section="privacy">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Privacy & Security</span>
+                    </a>
+                    <a href="#billing" class="settings-nav-item" data-section="billing">
+                        <i class="fas fa-credit-card"></i>
+                        <span>Billing</span>
+                    </a>
+                    <a href="#api" class="settings-nav-item" data-section="api">
+                        <i class="fas fa-code"></i>
+                        <span>API</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="settings-content">
+                <!-- Account Settings -->
+                <section id="account" class="settings-section active">
+                    <div class="settings-section-header">
+                        <h2>Account Settings</h2>
+                        <p>Manage your account information and preferences</p>
+                    </div>
+
+                    <div class="settings-card">
+                        <div class="settings-card-header">
+                            <h3>Personal Information</h3>
+                        </div>
+                        <div class="settings-card-body">
+                            <form id="personalInfoForm">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="settingsFullName">Full Name</label>
+                                        <input type="text" id="settingsFullName" name="fullName">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="settingsUsername">Username</label>
+                                        <input type="text" id="settingsUsername" name="username">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="settingsEmail">Email Address</label>
+                                    <input type="email" id="settingsEmail" name="email" disabled>
+                                    <small>Email cannot be changed. Contact support for assistance.</small>
+                                </div>
+                                <div class="form-actions">
+                                    <button type="submit" class="btn-primary">Save Changes</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="settings-card">
+                        <div class="settings-card-header">
+                            <h3>Password</h3>
+                        </div>
+                        <div class="settings-card-body">
+                            <form id="passwordForm">
+                                <div class="form-group">
+                                    <label for="settingsCurrentPassword">Current Password</label>
+                                    <input type="password" id="settingsCurrentPassword" name="currentPassword" required>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="settingsNewPassword">New Password</label>
+                                        <input type="password" id="settingsNewPassword" name="newPassword" required>
+                                        <div class="password-strength"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="settingsConfirmPassword">Confirm New Password</label>
+                                        <input type="password" id="settingsConfirmPassword" name="confirmPassword" required>
+                                    </div>
+                                </div>
+                                <div class="form-actions">
+                                    <button type="submit" class="btn-primary">Update Password</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="settings-card">
+                        <div class="settings-card-header">
+                            <h3>Linked Accounts</h3>
+                        </div>
+                        <div class="settings-card-body">
+                            <div class="linked-accounts">
+                                <div class="linked-account">
+                                    <div class="account-info">
+                                        <img src="https://www.google.com/favicon.ico" alt="Google">
+                                        <div>
+                                            <h4>Google</h4>
+                                            <p id="googleLinkStatus">Not connected</p>
+                                        </div>
+                                    </div>
+                                    <button id="googleLinkBtn" class="btn-outline">Connect</button>
+                                </div>
+                                <div class="linked-account">
+                                    <div class="account-info">
+                                        <img src="https://github.com/favicon.ico" alt="GitHub">
+                                        <div>
+                                            <h4>GitHub</h4>
+                                            <p>Not connected</p>
+                                        </div>
+                                    </div>
+                                    <button class="btn-outline">Connect</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="settings-card danger-zone">
+                        <div class="settings-card-header">
+                            <h3>Danger Zone</h3>
+                        </div>
+                        <div class="settings-card-body">
+                            <div class="danger-action">
+                                <div>
+                                    <h4>Delete Account</h4>
+                                    <p>Once you delete your account, there is no going back. Please be certain.</p>
+                                </div>
+                                <button id="deleteAccountBtn" class="btn-danger">Delete Account</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Appearance Settings -->
+                <section id="appearance" class="settings-section">
+                    <div class="settings-section-header">
+                        <h2>Appearance</h2>
+                        <p>Customize how Alert X looks for you</p>
+                    </div>
+
+                    <div class="settings-card">
+                        <div class="settings-card-header">
+                            <h3>Theme</h3>
+                        </div>
+                        <div class="settings-card-body">
+                            <div class="theme-options">
+                                <div class="theme-option">
+                                    <input type="radio" id="themeLight" name="theme" value="light" checked>
+                                    <label for="themeLight">
+                                        <div class="theme-preview light-theme"></div>
+                                        <span>Light</span>
+                                    </label>
+                                </div>
+                                <div class="theme-option">
+                                    <input type="radio" id="themeDark" name="theme" value="dark">
+                                    <label for="themeDark">
+                                        <div class="theme-preview dark-theme"></div>
+                                        <span>Dark</span>
+                                    </label>
+                                </div>
+                                <div class="theme-option">
+                                    <input type="radio" id="themeSystem" name="theme" value="system">
+                                    <label for="themeSystem">
+                                        <div class="theme-preview system-theme"></div>
+                                        <span>System</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="settings-card">
+                        <div class="settings-card-header">
+                            <h3>Accent Color</h3>
+                        </div>
+                        <div class="settings-card-body">
+                            <div class="color-options">
+                                <div class="color-option">
+                                    <input type="radio" id="colorBlue" name="accentColor" value="blue" checked>
+                                    <label for="colorBlue">
+                                        <span class="color-preview blue"></span>
+                                        <span>Blue</span>
+                                    </label>
+                                </div>
+                                <div class="color-option">
+                                    <input type="radio" id="colorPurple" name="accentColor" value="purple">
+                                    <label for="colorPurple">
+                                        <span class="color-preview purple"></span>
+                                        <span>Purple</span>
+                                    </label>
+                                </div>
+                                <div class="color-option">
+                                    <input type="radio" id="colorGreen" name="accentColor" value="green">
+                                    <label for="colorGreen">
+                                        <span class="color-preview green"></span>
+                                        <span>Green</span>
+                                    </label>
+                                </div>
+                                <div class="color-option">
+                                    <input type="radio" id="colorRed" name="accentColor" value="red">
+                                    <label for="colorRed">
+                                        <span class="color-preview red"></span>
+                                        <span>Red</span>
+                                    </label>
+                                </div>
+                                <div class="color-option">
+                                    <input type="radio" id="colorOrange" name="accentColor" value="orange">
+                                    <label for="colorOrange">
+                                        <span class="color-preview orange"></span>
+                                        <span>Orange</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Notifications Settings -->
+                <section id="notifications" class="settings-section">
+                    <div class="settings-section-header">
+                        <h2>Notifications</h2>
+                        <p>Manage how and when you receive notifications</p>
+                    </div>
+
+                    <div class="settings-card">
+                        <div class="settings-card-header">
+                            <h3>Email Notifications</h3>
+                        </div>
+                        <div class="settings-card-body">
+                            <div class="notification-option">
+                                <div>
+                                    <h4>Security Alerts</h4>
+                                    <p>Receive emails about suspicious login attempts and security updates</p>
+                                </div>
+                                <label class="toggle">
+                                    <input type="checkbox" id="securityEmailsToggle" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                            <div class="notification-option">
+                                <div>
+                                    <h4>Detection Alerts</h4>
+                                    <p>Receive emails when a person or vehicle is detected in your videos</p>
+                                </div>
+                                <label class="toggle">
+                                    <input type="checkbox" id="detectionEmailsToggle" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                            <div class="notification-option">
+                                <div>
+                                    <h4>Product Updates</h4>
+                                    <p>Receive emails about new features and improvements</p>
+                                </div>
+                                <label class="toggle">
+                                    <input type="checkbox" id="updateEmailsToggle">
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                            <div class="notification-option">
+                                <div>
+                                    <h4>Marketing Emails</h4>
+                                    <p>Receive promotional emails and special offers</p>
+                                </div>
+                                <label class="toggle">
+                                    <input type="checkbox" id="marketingEmailsToggle">
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="settings-card">
+                        <div class="settings-card-header">
+                            <h3>Browser Notifications</h3>
+                        </div>
+                        <div class="settings-card-body">
+                            <div class="notification-option">
+                                <div>
+                                    <h4>Enable Browser Notifications</h4>
+                                    <p>Allow Alert X to send you notifications in your browser</p>
+                                </div>
+                                <label class="toggle">
+                                    <input type="checkbox" id="browserNotificationsToggle">
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                            <div class="notification-option">
+                                <div>
+                                    <h4>Real-time Detection Alerts</h4>
+                                    <p>Receive browser notifications when a person or vehicle is detected</p>
+                                </div>
+                                <label class="toggle">
+                                    <input type="checkbox" id="detectionBrowserToggle" disabled>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Privacy & Security Settings -->
+                <section id="privacy" class="settings-section">
+                    <div class="settings-section-header">
+                        <h2>Privacy & Security</h2>
+                        <p>Manage your privacy and security settings</p>
+                    </div>
+
+                    <div class="settings-card">
+                        <div class="settings-card-header">
+                            <h3>Two-Factor Authentication</h3>
+                        </div>
+                        <div class="settings-card-body">
+                            <div class="two-factor-status">
+                                <div>
+                                    <h4>Status: <span id="twoFactorStatus" class="status-inactive">Not Enabled</span></h4>
+                                    <p>Add an extra layer of security to your account by requiring a verification code in addition to your password.</p>
+                                </div>
+                                <button id="setup2FABtn" class="btn-primary">Enable 2FA</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="settings-card">
+                        <div class="settings-card-header">
+                            <h3>Login Sessions</h3>
+                        </div>
+                        <div class="settings-card-body">
+                            <div class="sessions-list">
+                                <div class="session current">
+                                    <div class="session-info">
+                                        <div class="device-icon">
+                                            <i class="fas fa-laptop"></i>
+                                        </div>
+                                        <div>
+                                            <h4>Current Session</h4>
+                                            <p>Chrome on Windows • <span id="currentSessionLocation">Unknown Location</span></p>
+                                            <span class="session-time" id="currentSessionTime">Active now</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="session">
+                                    <div class="session-info">
+                                        <div class="device-icon">
+                                            <i class="fas fa-mobile-alt"></i>
+                                        </div>
+                                        <div>
+                                            <h4>Mobile Session</h4>
+                                            <p>Safari on iPhone • New York, USA</p>
+                                            <span class="session-time">Last active: 2 days ago</span>
+                                        </div>
+                                    </div>
+                                    <button class="btn-outline btn-sm">Revoke</button>
+                                </div>
+                            </div>
+                            <div class="form-actions">
+                                <button id="logoutAllBtn" class="btn-outline">Sign Out of All Sessions</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="settings-card">
+                        <div class="settings-card-header">
+                            <h3>Data Privacy</h3>
+                        </div>
+                        <div class="settings-card-body">
+                            <div class="privacy-option">
+                                <div>
+                                    <h4>Data Collection</h4>
+                                    <p>Allow Alert X to collect usage data to improve the service</p>
+                                </div>
+                                <label class="toggle">
+                                    <input type="checkbox" id="dataCollectionToggle" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                            <div class="privacy-option">
+                                <div>
+                                    <h4>Video Storage</h4>
+                                    <p>Store analyzed videos for future reference</p>
+                                </div>
+                                <label class="toggle">
+                                    <input type="checkbox" id="videoStorageToggle" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                            <div class="form-actions">
+                                <button id="downloadDataBtn" class="btn-outline">Download My Data</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Billing Settings -->
+                <section id="billing" class="settings-section">
+                    <div class="settings-section-header">
+                        <h2>Billing</h2>
+                        <p>Manage your subscription and payment methods</p>
+                    </div>
+
+                    <div class="settings-card">
+                        <div class="settings-card-header">
+                            <h3>Current Plan</h3>
+                        </div>
+                        <div class="settings-card-body">
+                            <div class="current-plan">
+                                <div class="plan-info">
+                                    <h4 id="currentPlanName">Free Plan</h4>
+                                    <p id="currentPlanDescription">Basic features with limited usage</p>
+                                    <div class="plan-limits">
+                                        <div class="plan-limit">
+                                            <span>Video Analysis:</span>
+                                            <span>10 videos/month</span>
+                                        </div>
+                                        <div class="plan-limit">
+                                            <span>Live Monitoring:</span>
+                                            <span>1 hour/day</span>
+                                        </div>
+                                        <div class="plan-limit">
+                                            <span>Storage:</span>
+                                            <span>1 GB</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button id="upgradePlanBtn" class="btn-primary">Upgrade Plan</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="settings-card">
+                        <div class="settings-card-header">
+                            <h3>Payment Methods</h3>
+                        </div>
+                        <div class="settings-card-body">
+                            <div class="payment-methods">
+                                <p>No payment methods added yet.</p>
+                                <button id="addPaymentBtn" class="btn-outline">Add Payment Method</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="settings-card">
+                        <div class="settings-card-header">
+                            <h3>Billing History</h3>
+                        </div>
+                        <div class="settings-card-body">
+                            <div class="billing-history">
+                                <p>No billing history available.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- API Settings -->
+                <section id="api" class="settings-section">
+                    <div class="settings-section-header">
+                        <h2>API</h2>
+                        <p>Manage your API keys and integrations</p>
+                    </div>
+
+                    <div class="settings-card">
+                        <div class="settings-card-header">
+                            <h3>API Keys</h3>
+                        </div>
+                        <div class="settings-card-body">
+                            <div class="api-keys">
+                                <p>No API keys generated yet.</p>
+                                <button id="generateApiKeyBtn" class="btn-outline">Generate API Key</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="settings-card">
+                        <div class="settings-card-header">
+                            <h3>Webhooks</h3>
+                        </div>
+                        <div class="settings-card-body">
+                            <div class="webhooks">
+                                <p>No webhooks configured yet.</p>
+                                <button id="addWebhookBtn" class="btn-outline">Add Webhook</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <!-- Delete Account Confirmation Modal -->
+    <div class="modal" id="deleteAccountModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Delete Account</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="delete-warning">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <p>This action cannot be undone. All your data will be permanently deleted.</p>
+                </div>
+                <form id="deleteAccountForm">
+                    <div class="form-group">
+                        <label for="deleteConfirmPassword">Enter your password to confirm</label>
+                        <input type="password" id="deleteConfirmPassword" name="password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="deleteReason">Why are you leaving? (Optional)</label>
+                        <select id="deleteReason" name="reason">
+                            <option value="">Select a reason</option>
+                            <option value="not-useful">Not useful for me</option>
+                            <option value="too-expensive">Too expensive</option>
+                            <option value="found-alternative">Found a better alternative</option>
+                            <option value="temporary">Temporary break, will be back</option>
+                            <option value="other">Other reason</option>
+                        </select>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="cancel-btn">Cancel</button>
+                        <button type="submit" class="delete-btn">Delete My Account</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2FA Setup Modal -->
+    <div class="modal" id="twoFactorModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Set Up Two-Factor Authentication</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="two-factor-setup">
+                    <div class="setup-step active" data-step="1">
+                        <h3>Step 1: Scan QR Code</h3>
+                        <p>Scan this QR code with your authenticator app (Google Authenticator, Authy, etc.)</p>
+                        <div class="qr-code-container">
+                            <img src="https://via.placeholder.com/200x200" alt="QR Code" id="twoFactorQR">
+                        </div>
+                        <div class="manual-code">
+                            <p>Or enter this code manually:</p>
+                            <code id="twoFactorManualCode">XXXX XXXX XXXX XXXX</code>
+                        </div>
+                        <button class="btn-primary next-step-btn">Next</button>
+                    </div>
+                    <div class="setup-step" data-step="2">
+                        <h3>Step 2: Verify Code</h3>
+                        <p>Enter the 6-digit code from your authenticator app to verify setup</p>
+                        <div class="form-group">
+                            <label for="verificationCode">Verification Code</label>
+                            <input type="text" id="verificationCode" name="code" maxlength="6" placeholder="000000">
+                        </div>
+                        <div class="form-actions">
+                            <button class="btn-outline prev-step-btn">Back</button>
+                            <button class="btn-primary" id="verifyCodeBtn">Verify & Enable</button>
+                        </div>
+                    </div>
+                    <div class="setup-step" data-step="3">
+                        <div class="success-message">
+                            <i class="fas fa-check-circle"></i>
+                            <h3>Two-Factor Authentication Enabled</h3>
+                            <p>Your account is now more secure. You'll need to enter a verification code each time you sign in.</p>
+                        </div>
+                        <div class="recovery-codes">
+                            <h4>Recovery Codes</h4>
+                            <p>Save these recovery codes in a safe place. You can use them to sign in if you lose access to your authenticator app.</p>
+                            <div class="codes-container" id="recoveryCodes">
+                                <code>XXXXX-XXXXX</code>
+                                <code>XXXXX-XXXXX</code>
+                                <code>XXXXX-XXXXX</code>
+                                <code>XXXXX-XXXXX</code>
+                                <code>XXXXX-XXXXX</code>
+                            </div>
+                            <button class="btn-outline" id="downloadCodesBtn">Download Codes</button>
+                        </div>
+                        <button class="btn-primary close-modal">Done</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.38.4/dist/umd/supabase.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="settings.js"></script>
+</body>
+</html>

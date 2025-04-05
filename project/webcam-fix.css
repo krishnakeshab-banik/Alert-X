@@ -1,0 +1,84 @@
+/* Webcam Fix Styles */
+
+/* Ensure webcam video is properly displayed */
+.camera-cell[data-id^="webcam-"] .camera-video,
+.webcam-video {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    background-color: #000 !important;
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    z-index: 1 !important;
+}
+
+/* Add a special indicator for webcam cells */
+.camera-cell[data-id^="webcam-"] .camera-status,
+.webcam-status {
+    background: rgba(16, 185, 129, 0.8) !important;
+    position: absolute !important;
+    top: 10px !important;
+    right: 10px !important;
+    padding: 5px 10px !important;
+    border-radius: 4px !important;
+    color: white !important;
+    font-size: 12px !important;
+    font-weight: bold !important;
+    z-index: 10 !important;
+}
+
+/* Add a special border for webcam cells */
+.camera-cell[data-id^="webcam-"],
+.webcam-active {
+    border: 2px solid rgba(16, 185, 129, 0.8) !important;
+    box-shadow: 0 0 10px rgba(16, 185, 129, 0.5) !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+/* Webcam indicator */
+.webcam-indicator {
+    position: absolute !important;
+    bottom: 10px !important;
+    left: 10px !important;
+    background: rgba(0, 0, 0, 0.7) !important;
+    color: #10b981 !important;
+    padding: 5px !important;
+    border-radius: 50% !important;
+    width: 30px !important;
+    height: 30px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    z-index: 10 !important;
+}
+
+/* Pulsing animation for webcam indicator */
+.webcam-indicator i {
+    animation: pulse 2s infinite !important;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 0.5;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.5;
+    }
+}
+
+/* Ensure all video elements are visible */
+video {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Add a special class for playing videos */
+.camera-video.playing {
+    border: 2px solid #10b981 !important;
+}
